@@ -572,6 +572,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
 const translations = {
   en: {
+    navPixelConvert: "Pixel Convert",
+    navPlugins: "Plugins",
+    navBlogs: "Blogs",
+    pluginsTitle: "Wplace Plugins",
+    pluginsSubtitle: "Official Extensions and Tools",
+    pluginsDescription: "Discover powerful plugins and extensions to enhance your Wplace pixel art creation experience.",
+    blueMarbleTitle: "Blue Marble",
+    blueMarbleDescription: "Advanced pixel art conversion tool with enhanced color palette and precision tools for Wplace platform.",
+    featureColorPalette: "Color Palette",
+    featurePixelPerfect: "Pixel Perfect",
+    featureAdvancedTools: "Advanced Tools",
+    viewDetails: "View Details",
+    viewSource: "View Source",
+    comingSoonTitle: "More Plugins",
+    comingSoonDescription: "We're working on more amazing plugins to enhance your Wplace experience. Stay tuned!",
+    featureInDevelopment: "In Development",
+    comingSoon: "Coming Soon",
     title: "Wplace Tool",
     subtitle: "Create Perfect Pixel Art for Wplace",
     description: "Transform your images into pixel-perfect art with Wplace's professional pixel art converter. Precise color adjustments and powerful pixel tools.",
@@ -610,6 +627,9 @@ const translations = {
     featureDesc3: "Utilize professional pixel art tools including precise scaling, pixel-perfect adjustments, and seamless Wplace integration for optimal results."
   },
   pt: {
+    navPixelConvert: "Conversor de Pixel",
+    navPlugins: "Plugins",
+    navBlogs: "Blogs",
     title: "Ferramenta Wplace",
     subtitle: "Crie Pixel Art Perfeita para Wplace",
     description: "Transforme suas imagens em pixel art perfeita com o conversor profissional do Wplace. Ajustes precisos de cores e ferramentas poderosas de pixel.",
@@ -648,6 +668,9 @@ const translations = {
     featureDesc3: "Utilize ferramentas profissionais de pixel art, incluindo escala precisa, ajustes pixel-perfect e integração perfeita com Wplace."
   },
   es: {
+    navPixelConvert: "Conversor de Pixel",
+    navPlugins: "Plugins",
+    navBlogs: "Blogs",
     title: "Herramienta Wplace",
     subtitle: "Crea Pixel Art Perfecto para Wplace",
     description: "Transforma tus imágenes en pixel art perfecto con el conversor profesional de Wplace. Ajustes precisos de color y herramientas potentes de píxeles.",
