@@ -8,6 +8,11 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://wplace.wiki">
   <meta name="theme-color" content="#D60270">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pixel Art Converter For Wplace - Transform your images into beautiful pixel art">
+  <meta name="keywords" content="wplace tool, pixel art converter, image processing, color adjustment, wplace extension">
+  <meta name="author" content="Wplace">
+  <meta name="theme-color" content="#000000">
   <title>Wplace Tool Help Paint Easily</title>
   <link rel="stylesheet" href="main.css">
   <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
@@ -35,7 +40,10 @@
 </div>
 
 
-  <h2 data-i18n="title">Wplace Tool</h2>
+  <header>
+    <h1 class="title" style="text-align: center; font-size: 2.5rem; font-weight: 700; letter-spacing: 0; margin-top: 80px; margin-bottom: 24px; color: #ffffff;" data-i18n="title">Wplace Tool</h1>
+    <p class="subtitle">Transform your images into beautiful pixel art</p>
+  </header>
 
   <input type="file" id="upload" accept="image/*"><br>
 
@@ -67,6 +75,7 @@
     <a class="button" target="_blank" href="https://wplace.live/" data-i18n="goto">Go to Wplace</a>
   </div>
 
+  <h2 style="text-align: center;">Wplace Color Palettes</h2>
   <p data-i18n="freeColors">Free Colors:</p>
   <button class="toggle-color" data-type=free style="background: rgb(0,0,0); color: #fff;" id="unselect-all-free" data-i18n="allButtonfreeUnselect">Unselect All Free Colors</button>
   <div id="colors">
@@ -140,6 +149,31 @@
     <button id="64" class="toggle-color" data-type=paid style="background: rgb(179,185,209);" title="Light Slate: rgb(179, 185, 209)">Light Slate</button> 
   </div>
   <div id="color-list"></div>
+
+  <section class="introduction">
+    <h2>What is Wplace Tool</h2>
+    <p>Wplace Tool is a powerful image processing platform that converts images to pixel art with customizable color adjustments.</p>
+    
+    <div class="features">
+      <article class="feature-item">
+        <h3>Pixel Art Conversion</h3>
+        <p>Transform any image into beautiful pixel art with customizable resolution and color palettes.</p>
+      </article>
+      <article class="feature-item">
+        <h3>Color Adjustment</h3>
+        <p>Fine-tune colors and create custom palettes to achieve the perfect pixel art style.</p>
+      </article>
+      <article class="feature-item">
+        <h3>Wplace Extension</h3>
+        <p>Use Wplace Extension and Wplace Script for enhanced image processing capabilities.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+   
+  </section>
 
   <script src="main.js"></script>
 </body>
