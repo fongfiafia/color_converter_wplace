@@ -1081,7 +1081,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!savedLang) {
     // Detect browser language
-    let browserLang = (navigator.language || navigator.userLanguage || "en").toLowerCase();
+    let browserLang = (navigator.language || navigator.userLanguage || "pt").toLowerCase();
     console.log("Browser language detected:", browserLang);
 
     // First try full match (e.g. "pt-BR")
@@ -1093,8 +1093,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (translations[shortLang]) {
         savedLang = shortLang;
       } else {
-        // Default to English if not found
-        savedLang = "en";
+        // Default to Portuguese if not found
+        savedLang = "pt";
       }
     }
   }
@@ -1113,7 +1113,7 @@ let fileName = "";
 // Helper to get current language from selector
 function getCurrentLang() {
   const langSelect = document.getElementById('lang-select');
-  return (langSelect && langSelect.value) || 'en';
+  return (langSelect && langSelect.value) || 'pt';
 }
 
 // Show image info with translation
