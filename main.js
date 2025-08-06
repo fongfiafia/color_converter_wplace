@@ -1169,7 +1169,45 @@ document.getElementById('transparentButton').addEventListener('click', function 
 });
 
 function applyTranslations(lang) {
-console.log(document.getElementById("meta-og-title"));
+  // Update meta tags
+  const metaTags = {
+    title: {
+      en: "Wplace Tool Help Paint Easily",
+      pt: "Ferramenta Wplace para Pintar Facilmente",
+      es: "Herramienta Wplace para Pintar Fácilmente",
+      fr: "Outil Wplace pour Peindre Facilement",
+      de: "Wplace Werkzeug zum einfachen Malen",
+      ja: "Wplaceで簡単にペイントできるツール",
+      uk: "Інструмент Wplace для Легкого Малювання",
+      vi: "Công cụ Wplace Giúp Vẽ Dễ Dàng",
+      pl: "Narzędzie Wplace do Łatwego Malowania",
+      de_CH: "Wplace Wärkzüüg zum eifache Male",
+      nl: "Wplace Gereedschap voor Eenvoudig Schilderen",
+      ru: "Инструмент Wplace для Удобного Рисования",
+      tr: "Wplace Kolay Boyama Aracı"
+    },
+    description: {
+      en: "Wplace pixel art converter & generator & maker & extension & script. Transform your images into perfect pixel",
+      pt: "Conversor e gerador de pixel art Wplace & extensão & script. Transforme suas imagens em pixels perfeitos",
+      es: "Conversor y generador de pixel art Wplace & extensión & script. Transforma tus imágenes en píxeles perfectos",
+      fr: "Convertisseur et générateur de pixel art Wplace & extension & script. Transformez vos images en pixels parfaits",
+      de: "Wplace Pixel Art Konverter & Generator & Maker & Erweiterung & Skript. Verwandle deine Bilder in perfekte Pixel",
+      ja: "Wplaceピクセルアートコンバーター＆ジェネレーター＆メーカー＆拡張機能＆スクリプト。画像を完璧なピクセルに変換",
+      uk: "Конвертер і генератор піксельного мистецтва Wplace & розширення & скрипт. Перетворіть ваші зображення в ідеальні пікселі",
+      vi: "Bộ chuyển đổi và tạo pixel art Wplace & tiện ích mở rộng & script. Chuyển đổi hình ảnh của bạn thành pixel hoàn hảo",
+      pl: "Konwerter i generator pixel art Wplace & rozszerzenie & skrypt. Przekształć swoje obrazy w idealne piksele",
+      de_CH: "Wplace Pixel Art Konverter & Generator & Maker & Erwiiterig & Skript. Verwandle dini Bilder i perfekti Pixel",
+      nl: "Wplace pixel art converter & generator & maker & extensie & script. Transformeer je afbeeldingen naar perfecte pixels",
+      ru: "Конвертер и генератор пиксельного искусства Wplace & расширение & скрипт. Преобразуйте ваши изображения в идеальные пиксели",
+      tr: "Wplace piksel sanatı dönüştürücü & üretici & yapıcı & eklenti & script. Görüntülerinizi mükemmel piksellere dönüştürün"
+    }
+  };
+
+  // Update meta tags
+  document.title = metaTags.title[lang] || metaTags.title.en;
+  document.querySelector('meta[property="og:title"]').setAttribute('content', metaTags.title[lang] || metaTags.title.en);
+  document.querySelector('meta[property="og:description"]').setAttribute('content', metaTags.description[lang] || metaTags.description.en);
+  document.querySelector('meta[name="description"]').setAttribute('content', metaTags.description[lang] || metaTags.description.en);
   // Update visible elements
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
