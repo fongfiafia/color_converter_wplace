@@ -1186,6 +1186,21 @@ function applyTranslations(lang) {
       ru: "Инструмент Wplace для Удобного Рисования",
       tr: "Wplace Kolay Boyama Aracı"
     },
+    keywords: {
+      en: "wplace live, wplace tool, wplace extension, wplace script, wplace pixel, blue marble, wplace pixel maker, wplace pixel converter, wplace colors palette",
+      pt: "wplace ao vivo, ferramenta wplace, extensão wplace, script wplace, pixel wplace, mármore azul, criador de pixels wplace, conversor de pixels wplace, paleta de cores wplace",
+      es: "wplace en vivo, herramienta wplace, extensión wplace, script wplace, píxel wplace, mármol azul, creador de píxeles wplace, convertidor de píxeles wplace, paleta de colores wplace",
+      fr: "wplace en direct, outil wplace, extension wplace, script wplace, pixel wplace, marbre bleu, créateur de pixels wplace, convertisseur de pixels wplace, palette de couleurs wplace",
+      de: "wplace live, wplace-werkzeug, wplace-erweiterung, wplace-script, wplace-pixel, blauer marmor, wplace-pixel-maker, wplace-pixel-konverter, wplace-farbpalette",
+      ja: "wplace ライブ, wplace ツール, wplace 拡張機能, wplace スクリプト, wplace ピクセル, 青い大理石, wplace ピクセル作成ツール, wplace ピクセル変換ツール, wplace カラーパレット",
+      uk: "wplace наживо, інструмент wplace, розширення wplace, скрипт wplace, піксель wplace, блакитний мармур, генератор пікселів wplace, перетворювач пікселів wplace, палітра кольорів wplace",
+      vi: "wplace trực tiếp, công cụ wplace, tiện ích mở rộng wplace, tập lệnh wplace, pixel wplace, đá cẩm thạch xanh, trình tạo pixel wplace, trình chuyển đổi pixel wplace, bảng màu wplace",
+      pl: "wplace na żywo, narzędzie wplace, rozszerzenie wplace, skrypt wplace, piksel wplace, niebieski marmur, twórca pikseli wplace, konwerter pikseli wplace, paleta kolorów wplace",
+      de_CH: "wplace live, wplace wärkzüüg, wplace-erwyterig, wplace script, wplace pixel, blauer marmor, wplace pixel maker, wplace pixel konverter, wplace farbpalette",
+      nl: "wplace live, wplace gereedschap, wplace extensie, wplace script, wplace pixel, blauw marmer, wplace pixelmaker, wplace pixelconverter, wplace kleurenpalet",
+      ru: "wplace в прямом эфире, инструмент wplace, расширение wplace, скрипт wplace, пиксель wplace, голубой мрамор, создатель пикселей wplace, конвертер пикселей wplace, палитра цветов wplace",
+      tr: "wplace canlı, wplace aracı, wplace uzantısı, wplace betiği, wplace piksel, mavi mermer, wplace piksel oluşturucu, wplace piksel dönüştürücü, wplace renk paleti"
+    },
     description: {
       en: "Wplace pixel art converter & generator & maker & extension & script. Transform your images into perfect pixel",
       pt: "Conversor e gerador de pixel art Wplace & extensão & script. Transforme suas imagens em pixels perfeitos",
