@@ -220,6 +220,52 @@ label {
   outline: none;
 }
 
+/* FAQ Styles */
+.faq {
+  width: 100%;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.faq h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #ffffff;
+}
+
+.faq-container {
+  display: grid;
+  gap: 24px;
+}
+
+.faq-item {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 24px;
+  transition: all 0.2s ease;
+}
+
+.faq-item:hover {
+  border-color: #444;
+  transform: translateY(-1px);
+}
+
+.faq-item h3 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin: 0 0 16px 0;
+  font-weight: 600;
+}
+
+.faq-item p {
+  color: #cccccc;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
 .lang_select {
   display: flex;
   align-items: center;
