@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.wplace.wiki/sitemap.xml
+
+# Allow all robots complete access
+# Disallow: /private/
+# Disallow: /admin/
+# Disallow: /temp/
