@@ -54,71 +54,74 @@ function showCustomToast(message) {
   }, 1800);
 }
 
-document.getElementById('clipboard').addEventListener('click', async function () {
-  const canvas = document.getElementById('canvas');
-  if (!canvas) return;
-
-  const ctx = canvas.getContext('2d');
-  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-
-  let allTransparent = true;
-  for (let i = 3; i < imageData.length; i += 4) {
-    if (imageData[i] !== 0) {
-      allTransparent = false;
-      break;
-    }
-  }
-
-  const lang = getCurrentLang();
-  const t = translations[lang] || translations['pt'];
-
-  if (allTransparent) {
-    showCustomToast(t.imageNotFound);
-    return;
-  }
-
-  canvas.toBlob(async (blob) => {
-    try {
-      await navigator.clipboard.write([
-        new ClipboardItem({ 'image/png': blob })
-      ]);
-      showCustomToast(t.imageCopied);
-    } catch (err) {
-      showCustomToast(t.copyFailed);
-    }
-  }, 'image/png');
-});
-
-// Handle paste events to allow image pasting
-document.addEventListener('paste', function (event) {
-  if (!event.clipboardData) return;
-  const items = event.clipboardData.items;
-  for (let i = 0; i < items.length; i++) {
-    if (items[i].type.indexOf('image') !== -1) {
-      const file = items[i].getAsFile();
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (evt) {
-          const img = new Image();
-          img.onload = function () {
-            originalImage = img;
-            currentImageWidth = img.width;
-            currentImageHeight = img.height;
-            canvas.width = img.width;
-            canvas.height = img.height;
-            ctx.drawImage(img, 0, 0);
-            processarImagem();
-            showImageInfo(currentImageWidth, currentImageHeight);
-          };
-          img.src = evt.target.result;
-        };
-        reader.readAsDataURL(file);
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('clipboard').addEventListener('click', async function () {
+    const canvas = document.getElementById('canvas');
+    if (!canvas) return;
+  
+    const ctx = canvas.getContext('2d');
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+  
+    let allTransparent = true;
+    for (let i = 3; i < imageData.length; i += 4) {
+      if (imageData[i] !== 0) {
+        allTransparent = false;
+        break;
       }
-      event.preventDefault();
-      break;
     }
-  }
-});
+  
+    const lang = getCurrentLang();
+    const t = translations[lang] || translations['pt'];
+  
+    if (allTransparent) {
+      showCustomToast(t.imageNotFound);
+      return;
+    }
+  
+    canvas.toBlob(async (blob) => {
+      try {
+        await navigator.clipboard.write([
+          new ClipboardItem({ 'image/png': blob })
+        ]);
+        showCustomToast(t.imageCopied);
+      } catch (err) {
+        showCustomToast(t.copyFailed);
+      }
+    }, 'image/png');
+  });
+  
+  // Handle paste events to allow image pasting
+  document.addEventListener('paste', function (event) {
+    if (!event.clipboardData) return;
+    const items = event.clipboardData.items;
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].type.indexOf('image') !== -1) {
+        const file = items[i].getAsFile();
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (evt) {
+            const img = new Image();
+            img.onload = function () {
+              originalImage = img;
+              currentImageWidth = img.width;
+              currentImageHeight = img.height;
+              canvas.width = img.width;
+              canvas.height = img.height;
+              ctx.drawImage(img, 0, 0);
+              processarImagem();
+              showImageInfo(currentImageWidth, currentImageHeight);
+            };
+            img.src = evt.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+        event.preventDefault();
+        break;
+      }
+    }
+  });
+})
+
 
 // Function to find the closest color in the pattern
 function corMaisProxima(r, g, b) {
@@ -519,14 +522,14 @@ function getCurrentLang() {
 }
 
 // Show image info with translation
-function showImageInfo(width, height) {
-  const lang = getCurrentLang();
-  const t = translations[lang];
-  if (!width || !height) return;
-  document.getElementById("width").textContent = `${t.width} ${width} px`;
-  document.getElementById("height").textContent = `${t.height} ${height} px`;
-  document.getElementById("area").textContent = `${t.area} ${width * height} px`;
-}
+// function showImageInfo(width, height) {
+//   const lang = getCurrentLang();
+//   const t = translations[lang];
+//   if (!width || !height) return;
+//   document.getElementById("width").textContent = `${t.width} ${width} px`;
+//   document.getElementById("height").textContent = `${t.height} ${height} px`;
+//   document.getElementById("area").textContent = `${t.area} ${width * height} px`;
+// }
 
 // Refresh width/height/area display
 showImageInfo(currentImageWidth, currentImageHeight);
@@ -558,17 +561,20 @@ upload.addEventListener('change', e => {
 });
 
 // Transparent button functionality
-document.getElementById('transparentButton').addEventListener('click', function () {
-  this.classList.toggle('active');
-  localStorage.setItem('transparentHide', this.classList.contains('active'));
-
-  updatePadraoFromActiveButtons();
-
-  if (originalImage) {
-    applyScale();
-    applyPreview();
-  }
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('transparentButton').addEventListener('click', function () {
+    this.classList.toggle('active');
+    localStorage.setItem('transparentHide', this.classList.contains('active'));
+  
+    updatePadraoFromActiveButtons();
+  
+    if (originalImage) {
+      applyScale();
+      applyPreview();
+    }
+  });
 });
+
 
 function applyTranslations(lang) {
   // Update meta tags
