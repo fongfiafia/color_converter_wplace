@@ -171,7 +171,7 @@ document.getElementById('clipboard').addEventListener('click', async function ()
   }
 
   const lang = getCurrentLang();
-  const t = translations[lang] || translations['en'];
+  const t = translations[lang] || translations['pt'];
 
   if (allTransparent) {
     showCustomToast(t.imageNotFound);
@@ -290,7 +290,7 @@ function processarImagem() {
 // Image info display
 function showImageInfo(width, height) {
   const langSelect = document.getElementById('lang-select');
-  const lang = (langSelect && langSelect.value) || 'en';
+  const lang = (langSelect && langSelect.value) || 'pt';
   const t = translations[lang];
 
   const widthP = document.getElementById('width');
@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const lang = getCurrentLang();
-  const t = translations[lang] || translations['en'];
+  const t = translations[lang] || translations['pt'];
 
   // Start with all free buttons selected
   const freeButtons = document.querySelectorAll('#colors .toggle-color[data-type="free"]');
@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   selectAllFreeBtn.addEventListener('click', () => {
     const lang = getCurrentLang();
-    const t = translations[lang] || translations['en'];
+    const t = translations[lang] || translations['pt'];
 
     const isCurrentlySelected = selectAllFreeBtn.textContent === t.allButtonfreeUnselect;
 
@@ -399,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let isAllPaidSelected = false;
 
   const lang = getCurrentLang();
-  const t = translations[lang] || translations['en'];
+  const t = translations[lang] || translations['pt'];
 
   selectAllPaidBtn.textContent = t.allButtonpaidSelect;
 
@@ -412,7 +412,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const currentLang = getCurrentLang();
-    const tt = translations[currentLang] || translations['en'];
+    const tt = translations[currentLang] || translations['pt'];
 
     selectAllPaidBtn.textContent = isAllPaidSelected
       ? tt.allButtonpaidUnselect
@@ -1093,8 +1093,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (translations[shortLang]) {
         savedLang = shortLang;
       } else {
-        // Default to English if not found
-        savedLang = "en";
+        // Default to Portuguese if not found
+        savedLang = "pt";
       }
     }
   }
@@ -1113,7 +1113,7 @@ let fileName = "";
 // Helper to get current language from selector
 function getCurrentLang() {
   const langSelect = document.getElementById('lang-select');
-  return (langSelect && langSelect.value) || 'en';
+  return (langSelect && langSelect.value) || 'pt';
 }
 
 // Show image info with translation
@@ -1219,10 +1219,10 @@ function applyTranslations(lang) {
   };
 
   // Update meta tags
-  document.title = metaTags.title[lang] || metaTags.title.en;
-  document.querySelector('meta[property="og:title"]').setAttribute('content', metaTags.title[lang] || metaTags.title.en);
-  document.querySelector('meta[property="og:description"]').setAttribute('content', metaTags.description[lang] || metaTags.description.en);
-  document.querySelector('meta[name="description"]').setAttribute('content', metaTags.description[lang] || metaTags.description.en);
+  document.title = metaTags.title[lang] || metaTags.title.pt;
+  document.querySelector('meta[property="og:title"]').setAttribute('content', metaTags.title[lang] || metaTags.title.pt);
+  document.querySelector('meta[property="og:description"]').setAttribute('content', metaTags.description[lang] || metaTags.description.pt);
+  document.querySelector('meta[name="description"]').setAttribute('content', metaTags.description[lang] || metaTags.description.pt);
   // Update visible elements
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
