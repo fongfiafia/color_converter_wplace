@@ -11,10 +11,43 @@
   <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 <body>
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="/" class="logo-link">Wplace Tool</a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span class="hamburger"></span>
+      </button>
+      <div class="nav-content">
+        <div class="nav-links">
+          <a href="/#features">Features</a>
+          <a href="/#colors">Colors</a>
+          <a href="/#faq">FAQ</a>
+        </div>
+        <div class="lang_select">
+          <label for="lang-select">Language:</label>
+          <select id="lang-select">
+            <option value="en">🇺🇸 English</option>
+            <option value="pt">🇵🇹 Português 🇧🇷</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="uk">🇺🇦 Українська</option>
+            <option value="vi">🇻🇳 Tiếng Việt</option>
+            <option value="pl">🇵🇱 Polski</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="de_CH">🇨🇭 Deutsch (Schweiz)</option>
+            <option value="nl">🇳🇱 Nederlands</option>
+            <option value="ru">🇷🇺 Русский</option>
+            <option value="tr">🇹🇷 Türkçe</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </nav>
+
   <header style="text-align: center; padding: 40px 20px;">
-    <a href="/" style="text-decoration: none;">
-      <h1 style="color: #ffffff; font-size: 2rem; margin-bottom: 16px;">Wplace Pixel Tool</h1>
-    </a>
     <h2 style="color: #ffffff; font-size: 1.5rem;">Privacy Policy</h2>
   </header>
 
@@ -84,6 +117,11 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-KPG7QFTNP2');
+  </script>
+  <script type="module" src="utils/nav.js"></script>
+  <script type="module">
+    import { initNavigation } from './utils/nav.js';
+    document.addEventListener('DOMContentLoaded', initNavigation);
   </script>
 </body>
 </html>
