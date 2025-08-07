@@ -1,0 +1,26 @@
+{
+  "name": "color_converter_wplace",
+  "version": "1.0.0",
+  "description": "<h1>WPlace Pixel Art Color Converter</h1> <div>   Convert the colors of your image to the available in Wplace. </div> <br> <h2>Credits:</h2> <div>   Original code Created by PONTOGAMER   <br>   Adapted to website by ATLAS   <br>   Contributor: Autergame   <br>   Github manager and marketer: PEPOAFONSO   <br>   Motivational helper: kromck </div>   <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br> The Game",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fongfiafia/color_converter_wplace.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/fongfiafia/color_converter_wplace/issues"
+  },
+  "homepage": "https://github.com/fongfiafia/color_converter_wplace#readme",
+  "devDependencies": {
+    "vite": "^7.1.0"
+  }
+}
