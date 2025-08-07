@@ -1,29 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+// 可复用的页面模板类
+export class PageTemplate {
+  constructor(config) {
+    this.config = {
+      title: 'Wplace Pixel Tool',
+      description: 'The ultimate pixel art converter for Wplace platform',
+      keywords: 'wplace, pixel art, converter',
+      canonicalUrl: 'https://www.wplace.wiki',
+      lang: 'en',
+      showNav: true,
+      showFooter: true,
+      customStyles: [],
+      customScripts: [],
+      ...config
+    };
+  }
+
+  render() {
+    return `<!DOCTYPE html>
+<html lang="${this.config.lang}">
+${this.renderHead()}
+<body>
+${this.config.showNav ? this.renderNav() : ''}
+${this.renderContent()}
+${this.config.showFooter ? this.renderFooter() : ''}
+${this.renderScripts()}
+</body>
+</html>`;
+  }
+
+  renderHead() {
+    return `<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Privacy Policy for Wplace Pixel Tool - Learn how we protect your privacy and handle your data">
-  <meta name="keywords" content="privacy policy, wplace, data protection, privacy">
+  <meta name="description" content="${this.config.description}">
+  <meta name="keywords" content="${this.config.keywords}">
   <meta name="author" content="Wplace">
   <meta name="theme-color" content="#000000">
   
   <!-- Open Graph -->
-  <meta property="og:title" content="Privacy Policy | Wplace Pixel Tool">
-  <meta property="og:description" content="Privacy Policy for Wplace Pixel Tool - Learn how we protect your privacy and handle your data">
+  <meta property="og:title" content="${this.config.title}">
+  <meta property="og:description" content="${this.config.description}">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.wplace.wiki/privacy.html">
+  <meta property="og:url" content="${this.config.canonicalUrl}">
   
-  <link rel="canonical" href="https://www.wplace.wiki/privacy.html">
-  <title>Privacy Policy | Wplace Pixel Tool</title>
+  <link rel="canonical" href="${this.config.canonicalUrl}">
+  <title>${this.config.title}</title>
   
   <!-- Styles -->
   <link rel="stylesheet" href="main.css">
-  
+  ${this.config.customStyles.map(style => `<link rel="stylesheet" href="${style}">`).join('\n  ')}
   <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-</head>
-<body>
-<nav class="main-nav">
+</head>`;
+  }
+
+  renderNav() {
+    return `<nav class="main-nav">
   <div class="nav-container">
     <div class="nav-logo">
       <a href="/" class="logo-link">Wplace Tool</a>
@@ -58,46 +89,16 @@
       </div>
     </div>
   </div>
-</nav>
-<header style="text-align: center; padding: 40px 20px; margin-top: 60px;">
-  <h1 style="color: #ffffff; font-size: 2.5rem; margin-bottom: 16px;">Privacy Policy</h1>
-  
-</header>
+</nav>`;
+  }
 
-<main style="max-width: 800px; margin: 0 auto; padding: 20px; color: #cccccc; line-height: 1.6;">
-  
-<section style="margin-bottom: 40px;">
-  <h2 style="color: #ffffff; margin-bottom: 20px; font-size: 1.5rem;">Introduction</h2>
-  This Privacy Policy explains how Wplace Pixel Tool ("we", "us", or "our") collects, uses, and protects your information when you use our service.
-  
-</section>
-<section style="margin-bottom: 40px;">
-  <h2 style="color: #ffffff; margin-bottom: 20px; font-size: 1.5rem;">Information We Collect</h2>
-  We collect the following types of information:
-  <ul style="margin-left: 20px;"><li>Usage Data (through Google Analytics)</li><li>Images you upload for conversion (not stored)</li><li>Browser settings and preferences</li></ul>
-</section>
-<section style="margin-bottom: 40px;">
-  <h2 style="color: #ffffff; margin-bottom: 20px; font-size: 1.5rem;">How We Use Your Information</h2>
-  We use the collected information to:
-  <ul style="margin-left: 20px;"><li>Provide and improve our service</li><li>Analyze usage patterns</li><li>Fix technical issues</li><li>Enhance user experience</li></ul>
-</section>
-<section style="margin-bottom: 40px;">
-  <h2 style="color: #ffffff; margin-bottom: 20px; font-size: 1.5rem;">Data Security</h2>
-  We prioritize your data security:
-  <ul style="margin-left: 20px;"><li>Images are processed locally in your browser</li><li>We don't store your uploaded images</li><li>All processing is done client-side</li></ul>
-</section>
-<section style="margin-bottom: 40px;">
-  <h2 style="color: #ffffff; margin-bottom: 20px; font-size: 1.5rem;">Third-Party Services</h2>
-  We use the following third-party services:
-  <ul style="margin-left: 20px;"><li>Google Analytics for usage statistics</li><li>GitHub for code hosting</li></ul>
-</section>
-<section style="margin-bottom: 40px;">
-  <h2 style="color: #ffffff; margin-bottom: 20px; font-size: 1.5rem;">Contact Us</h2>
-  If you have any questions about this Privacy Policy, please contact us through our GitHub repository.
-  
-</section>
-</main>
-<footer style="margin-top: 60px; padding: 40px 20px; background: #1a1a1a; border-top: 1px solid #333; text-align: center;">
+  renderContent() {
+    // 子类需要重写这个方法
+    return this.config.content || '<main>Content goes here</main>';
+  }
+
+  renderFooter() {
+    return `<footer style="margin-top: 60px; padding: 40px 20px; background: #1a1a1a; border-top: 1px solid #333; text-align: center;">
   <div style="margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center; max-width: 1200px;">
     <div style="margin-bottom: 20px;">
       <h3 style="color: #ffffff; font-size: 1.2rem; margin-bottom: 16px;" data-i18n="footerTitle">Wplace Pixel Tool</h3>
@@ -126,8 +127,11 @@
   <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #333;">
     <p style="color: #888888; font-size: 0.9rem;" data-i18n="copyright">© 2025 Wplace Pixel Tool. All rights reserved.</p>
   </div>
-</footer>
-<!-- Google Analytics -->
+</footer>`;
+  }
+
+  renderScripts() {
+    return `<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KPG7QFTNP2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -144,6 +148,50 @@
 </script>
 
 <!-- Custom Scripts -->
+${this.config.customScripts.map(script => `<script type="module" src="${script}"></script>`).join('\n')}`;
+  }
+}
 
-</body>
-</html>
+// 专门的页面类型模板
+export class StaticPageTemplate extends PageTemplate {
+  constructor(config) {
+    super(config);
+  }
+
+  renderContent() {
+    return `<header style="text-align: center; padding: 40px 20px; margin-top: 60px;">
+  <h1 style="color: #ffffff; font-size: 2.5rem; margin-bottom: 16px;">${this.config.pageTitle || this.config.title}</h1>
+  ${this.config.subtitle ? `<p style="color: #cccccc; font-size: 1.2rem;">${this.config.subtitle}</p>` : ''}
+</header>
+
+<main style="max-width: 800px; margin: 0 auto; padding: 20px; color: #cccccc; line-height: 1.6;">
+  ${this.config.sections ? this.renderSections() : this.config.content || ''}
+</main>`;
+  }
+
+  renderSections() {
+    return this.config.sections.map(section => `
+<section style="margin-bottom: 40px;">
+  <h2 style="color: #ffffff; margin-bottom: 20px; font-size: 1.5rem;">${section.title}</h2>
+  ${section.content}
+  ${section.list ? `<ul style="margin-left: 20px;">${section.list.map(item => `<li>${item}</li>`).join('')}</ul>` : ''}
+</section>`).join('');
+  }
+}
+
+// 主应用页面模板（带工具功能）
+export class AppPageTemplate extends PageTemplate {
+  constructor(config) {
+    super(config);
+  }
+
+  renderContent() {
+    return `<header>
+  <h1 class="title" style="text-align: center; font-size: 3rem; font-weight: 700; letter-spacing: 0; margin-top: 5px; margin-bottom: 24px; color: #ffffff;" data-i18n="title">Wplace Pixel Tool</h1>
+  <p class="subtitle" style="text-align: center; font-size: 1.2rem; font-weight: 500; letter-spacing: 0; margin-bottom: 16px; color: #ffffff;" data-i18n="subtitle">Create Perfect Pixel Art for Wplace</p>
+  <p class="description" style="text-align: center; max-width: 600px; margin: 0 auto 32px; color: #cccccc;" data-i18n="description">Transform your images into pixel-perfect art with Wplace's professional pixel art converter. Precise color adjustments and powerful pixel tools.</p>
+</header>
+
+${this.config.content || ''}`;
+  }
+}

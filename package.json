@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "build:pages": "node scripts/build-pages.js",
+    "dev:pages": "npm run build:pages && npm run dev"
   },
   "repository": {
     "type": "git",
@@ -15,7 +17,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/fongfiafia/color_converter_wplace/issues"
   },
