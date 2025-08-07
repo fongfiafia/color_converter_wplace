@@ -266,11 +266,110 @@ label {
   font-size: 0.95rem;
 }
 
+.main-nav {
+  width: 100%;
+  background: #1a1a1a;
+  border-bottom: 1px solid #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 0.5rem 0;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.nav-logo {
+  flex: 0 0 auto;
+  margin-right: 2rem;
+}
+
+.logo-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.logo-link:hover {
+  color: #cccccc;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin: 0 2rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.nav-links a:hover {
+  color: #cccccc;
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .lang_select {
   display: flex;
   align-items: center;
   gap: 8px;
-  position: absolute;
-  right: 16px;
-  top: 16px;
+  margin-left: auto;
+}
+
+/* Adjust header margin to account for fixed nav */
+header {
+  margin-top: 80px;
+  padding-top: 2rem;
+}
+
+/* Mobile navigation styles */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    text-align: center;
+    margin: 1rem 0;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 0.5rem;
+    width: 100%;
+  }
+
+  .lang_select {
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+  }
+
+  header {
+    margin-top: 200px;
+  }
 }

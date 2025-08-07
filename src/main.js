@@ -13,6 +13,7 @@
 
 import { findClosestColor, colorNames, freeColors, paidColors } from './utils/color-logic.js';
 import { translations } from './utils/i18n.js';
+import { initNavigation } from './utils/nav.js';
 
 let padrao = [];
 
@@ -55,6 +56,9 @@ function showCustomToast(message) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize navigation
+  initNavigation();
+  
   document.getElementById('clipboard').addEventListener('click', async function () {
     const canvas = document.getElementById('canvas');
     if (!canvas) return;
@@ -481,6 +485,36 @@ document.getElementById("lang-select").addEventListener("change", function () {
 
 // Load saved or detected language on page load
 document.addEventListener("DOMContentLoaded", () => {
+  // 动态生成免费颜色按钮
+  const freeColorsContainer = document.getElementById("colors");
+  if (freeColorsContainer) {
+      freeColors.forEach((color, index) => {
+          const colorKey = color.join(',');
+          const btn = document.createElement("button");
+          
+          // 设置按钮属性
+          btn.setAttribute("id", index + 1);
+          btn.setAttribute("data-color", colorKey);
+          btn.setAttribute("data-type", 'free');
+          btn.className = "toggleColor active"; // 默认都为选中状态
+          btn.style.backgroundColor = `rgb(${colorKey})`;
+
+          // 设置按钮文本和颜色
+          const isDark = color.reduce((a, b) => a + b) / 3 < 128;
+          if (isDark) {
+              btn.style.color = "#fff";
+          }
+          btn.title = `${colorNames[colorKey] || 'Unknown'}: rgb(${colorKey})`;
+          btn.textContent = colorNames[colorKey] || 'Unknown';
+          
+          // 绑定点击事件
+          btn.addEventListener('click', handleColorToggle);
+          
+          freeColorsContainer.appendChild(btn);
+      });
+  }
+
+  
   let savedLang = localStorage.getItem("lang");
   console.log("Language applied to site:", savedLang);
 
