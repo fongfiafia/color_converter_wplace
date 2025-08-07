@@ -16,29 +16,43 @@
   <link rel="canonical" href="https://www.wplace.wiki">
   <title>Wplace Pixel Art Tool | Best Pixel Art Converter for Wplace</title>
   <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="navbar.css">
   <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 
 <body>
-<a class="button" style="position: absolute; left: 10px" target="blank" href="https://github.com/PEPOAFONSO/color_converter_wplace">Github</a>
-<div class="lang_select" style="position: absolute; right: 20px;top: 20px;">
-  <label for="lang-select">Language:</label>
-  <select id="lang-select">
-    <option value="en">🇺🇸 English</option>
-    <option value="pt">🇵🇹 Português 🇧🇷</option>
-    <option value="de">🇩🇪 Deutsch</option>
-    <option value="es">🇪🇸 Español</option>
-    <option value="fr">🇫🇷 Français</option>
-    <option value="uk">🇺🇦 Українська</option>
-    <option value="vi">🇻🇳 Tiếng Việt</option>
-    <option value="pl">🇵🇱 Polski</option>
-    <option value="ja">🇯🇵 日本語</option>
-    <option value="de_CH">🇨🇭 Deutsch (Schweiz)</option>
-    <option value="nl">🇳🇱 Nederlands</option>
-    <option value="ru">🇷🇺 Русский</option>
-    <option value="tr">🇹🇷 Türkçe</option>
-  </select>
-</div>
+<nav class="navbar">
+  <a href="/" class="navbar-brand">
+    <img src="favicon.png" alt="Wplace Tool">
+    <span>Wplace Tool</span>
+  </a>
+  <div class="navbar-links">
+    <a href="/" class="nav-link">Home</a>
+    <a href="/blue-marble" class="nav-link">Plugins</a>
+    <div class="lang-select-container">
+      <select id="lang-select" class="nav-lang-select">
+        <option value="en">🇺🇸 EN</option>
+        <option value="pt">🇵🇹 PT</option>
+        <option value="de">🇩🇪 DE</option>
+        <option value="es">🇪🇸 ES</option>
+        <option value="fr">🇫🇷 FR</option>
+        <option value="uk">🇺🇦 UK</option>
+        <option value="vi">🇻🇳 VI</option>
+        <option value="pl">🇵🇱 PL</option>
+        <option value="ja">🇯🇵 JA</option>
+        <option value="de_CH">🇨🇭 CH</option>
+        <option value="nl">🇳🇱 NL</option>
+        <option value="ru">🇷🇺 RU</option>
+        <option value="tr">🇹🇷 TR</option>
+      </select>
+    </div>
+  </div>
+  <button class="menu-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
 
 
   <header>
@@ -356,6 +370,7 @@
     </div>
   </footer>
 
+   <script src="navbar.js"></script>
    <script src="main.js"></script>
    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KPG7QFTNP2"></script>
   <script>
