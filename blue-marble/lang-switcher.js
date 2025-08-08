@@ -20,6 +20,13 @@ class LanguageSwitcher {
     }
     const translations = this.translations;
     
+    // 0. Migrate old storage key to global key if present
+    const legacySaved = localStorage.getItem('bluemarble-lang');
+    if (legacySaved && !localStorage.getItem('lang') && translations[legacySaved]) {
+      localStorage.setItem('lang', legacySaved);
+      localStorage.removeItem('bluemarble-lang');
+    }
+
     // 1. Check URL parameter
     const urlParams = new URLSearchParams(window.location.search);
     const urlLang = urlParams.get('lang');
@@ -30,7 +37,7 @@ class LanguageSwitcher {
     }
 
     // 2. Check localStorage
-    const savedLang = localStorage.getItem('bluemarble-lang');
+    const savedLang = localStorage.getItem('lang') || localStorage.getItem('bluemarble-lang');
     console.log('🌐 LanguageSwitcher: Saved lang:', savedLang);
     if (savedLang && this.isValidLanguage(savedLang)) {
       console.log('🌐 LanguageSwitcher: Using saved lang:', savedLang);
@@ -93,10 +100,16 @@ class LanguageSwitcher {
   }
 
   switchLanguage(lang) {
-    if (!this.isValidLanguage(lang)) return;
+    // If unsupported (e.g., user selected a language not available on this page), fallback to English
+    if (!this.isValidLanguage(lang)) {
+      lang = 'en';
+    }
 
     this.currentLang = lang;
-    localStorage.setItem('bluemarble-lang', lang);
+    // Persist to global key so homepage and other pages stay in sync
+    localStorage.setItem('lang', lang);
+    // Clean up legacy key
+    localStorage.removeItem('bluemarble-lang');
     
     this.translatePage();
     this.updateMetaTags();
