@@ -11,8 +11,8 @@
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#000000" />
     <link rel="canonical" href="https://www.wplace.wiki/geocode.html" />
-    <link rel="stylesheet" href="/main.css" />
-    <link rel="stylesheet" href="/navbar.css" />
+    <link rel="stylesheet" href="/main.css?v=2" />
+    <link rel="stylesheet" href="/navbar.css?v=3" />
     <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
 
     <link
@@ -73,7 +73,39 @@
       </section>
     </main>
 
-    <div id="footer-container"></div>
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div style="margin-bottom: 20px;">
+          <h3 data-i18n="footerTitle">Wplace Pixel Tool</h3>
+          <p data-i18n="footerDescription">The ultimate pixel art converter for Wplace platform</p>
+        </div>
+        <div class="site-footer__groups">
+          <div class="site-footer__group">
+            <h4 data-i18n="linksTitle">Links</h4>
+            <ul class="site-footer__list">
+              <li><a href="https://wplace.live">Wplace Platform</a></li>
+              <li><a href="https://github.com/PEPOAFONSO/color_converter_wplace">GitHub</a></li>
+            </ul>
+          </div>
+          <div class="site-footer__group">
+            <h4 data-i18n="legalTitle">Legal</h4>
+            <ul class="site-footer__list">
+              <li><a href="/privacy.html">Privacy Policy</a></li>
+              <li><a href="/terms.html">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p data-i18n="copyright">© 2025 Wplace Pixel Tool. All rights reserved.</p>
+      </div>
+      <div id="fazier-badge" class="site-footer__badges">
+        <a href="https://fazier.com/launches/www.wplace.wiki" target="_blank"><img src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=featured&theme=dark" width=150 alt="Fazier badge" /></a>
+        <a href="https://indie.deals?ref=https%3A%2F%2Fwww.wplace.wiki" target="_blank" rel="noopener noreferrer">Indie.Deals</a>
+        <a href="https://twelve.tools" target="_blank"><img src="https://twelve.tools/badge3-dark.svg" alt="Featured on Twelve Tools" width="200" height="54"></a>
+        <a href="https://www.aiproductlist.org" title="AI Sites | 2025">AI Product List</a>
+      </div>
+    </footer>
 
     <script>
       async function injectFragment(containerSelector, url) {
@@ -90,7 +122,6 @@
       document.addEventListener('DOMContentLoaded', async () => {
         await injectFragment('#navbar-container', '/components/navbar.html');
         if (window.initNavbarInteractions) window.initNavbarInteractions();
-        await injectFragment('#footer-container', '/components/footer.html');
       });
     </script>
     <script src="/navbar.js"></script>
