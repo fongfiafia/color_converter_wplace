@@ -18,6 +18,20 @@ body {
   align-self: stretch;
 }
 
+/* Fine-tune footer badges responsiveness globally */
+#fazier-badge {
+  flex-wrap: wrap;
+}
+#fazier-badge img { height: auto; }
+@media (max-width: 768px) {
+  #fazier-badge { gap: 12px; }
+  #fazier-badge img { max-width: 140px; }
+}
+@media (max-width: 420px) {
+  #fazier-badge { flex-direction: column; align-items: center; }
+  #fazier-badge img { max-width: 120px; }
+}
+
 h2#title, h2 {
   font-size: 2.5rem;
   font-weight: 700;
@@ -214,32 +228,6 @@ label {
   .button {
     margin: 8px;
   }
-}
-
-#lang-select {
-  background: #1a1a1a;
-  color: #ffffff;
-  font-weight: 500;
-  font-size: 0.9rem;
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid #333;
-  cursor: pointer;
-  outline: none;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 10px 7px;
-  min-width: 140px;
-  transition: all 0.2s ease;
-}
-
-#lang-select:hover, #lang-select:focus {
-  background: #222;
-  border-color: #444;
-  outline: none;
 }
 
 

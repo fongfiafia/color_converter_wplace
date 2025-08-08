@@ -70,7 +70,7 @@ body {
   padding-top: 60px;
 }
 
-/* 移动端响应式设计 */
+/* 平板端响应式 */
 @media (max-width: 768px) {
   .navbar {
     padding: 0 16px;
@@ -144,10 +144,11 @@ body {
   border-color: #444;
 }
 
-/* 超窄屏幕显示汉堡菜单 */
-@media (max-width: 480px) {
+/* 移动端汉堡菜单（扩大到平板，体验更一致） */
+@media (max-width: 768px) {
   .menu-toggle {
     display: flex;
+    z-index: 1001;
   }
 
   .navbar-links {
@@ -162,11 +163,53 @@ body {
     transform: translateY(-100%);
     transition: transform 0.3s ease;
     border-bottom: 1px solid #333;
+    gap: 8px;
+    z-index: 1000;
   }
 
   .navbar-links.active {
     transform: translateY(0);
   }
+
+  .nav-link {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 12px 14px;
+    font-size: 1rem;
+    border-radius: 8px;
+  }
+
+  .lang-select-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 8px 0 0 0;
+  }
+
+  .nav-lang-select {
+    min-width: 120px;
+    padding: 8px 14px;
+  }
+}
+
+/* 超小屏进一步优化可用空间 */
+@media (max-width: 420px) {
+  .navbar-brand span { display: none; }
+  .nav-lang-select { min-width: 100px; }
+}
+
+/* 汉堡菜单动画效果 */
+.menu-toggle span.active:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle span.active:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle span.active:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
 }
 
 /* -------------------- Footer (shared) -------------------- */
@@ -252,5 +295,32 @@ body {
 @media (max-width: 768px) {
   .site-footer__groups {
     gap: 20px;
+  }
+  .site-footer__inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .site-footer__groups {
+    flex-direction: column;
+    align-items: center;
+  }
+  .site-footer__badges {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  #fazier-badge img {
+    max-width: 140px;
+    height: auto;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-footer__badges {
+    flex-direction: column;
+    align-items: center;
+  }
+  #fazier-badge img {
+    max-width: 120px;
   }
 }
