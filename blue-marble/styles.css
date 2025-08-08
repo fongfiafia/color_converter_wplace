@@ -141,3 +141,9 @@
     @media (max-width: 480px) {
       /* navbar responsive rules are in /navbar.css */
     }
+
+    /* Ensure injected containers span full width on this page */
+    #navbar-container,
+    #footer-container {
+      width: 100%;
+    }
