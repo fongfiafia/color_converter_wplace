@@ -3,11 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WPLACE Lat/Long Locator & Map Link Generator | City to Coordinates</title>
-    <meta name="description" content="Enter a city/place to get latitude/longitude and generate a shareable wplace.live map link with zoom. Fast online geocoding and map redirect." />
-    <meta name="keywords" content="wplace, lat long finder, geocode online, coordinate lookup, map link generator, locator, map redirect" />
-    <meta property="og:title" content="WPLACE Lat/Long Locator & Map Link Generator" />
-    <meta property="og:description" content="Enter a city to get coordinates and generate a wplace.live map link with zoom." />
+    <title>
+      WPLACE Lat/Long Locator & Map Link Generator | City to Coordinates
+    </title>
+    <meta
+      name="description"
+      content="Enter a city/place to get latitude/longitude and generate a shareable wplace.live map link with zoom. Fast online geocoding and map redirect."
+    />
+    <meta
+      name="keywords"
+      content="wplace, lat long finder, geocode online, coordinate lookup, map link generator, locator, map redirect"
+    />
+    <meta
+      property="og:title"
+      content="WPLACE Lat/Long Locator & Map Link Generator"
+    />
+    <meta
+      property="og:description"
+      content="Enter a city to get coordinates and generate a wplace.live map link with zoom."
+    />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#000000" />
     <link rel="canonical" href="https://www.wplace.wiki/geocode" />
@@ -42,65 +56,169 @@
     <style>
       /* Geocode page responsive tweaks */
       @media (max-width: 1024px) {
-        main { margin: 64px auto 20px !important; padding: 0 14px !important; }
-        h1 { font-size: 1.6rem !important; }
+        main {
+          margin: 64px auto 20px !important;
+          padding: 0 14px !important;
+        }
+        h1 {
+          font-size: 1.6rem !important;
+        }
       }
       @media (max-width: 768px) {
-        main { margin: 56px auto 16px !important; padding: 0 12px !important; }
-        h1 { font-size: 1.4rem !important; }
-        #results { max-height: 180px !important; }
-        #map { height: 340px !important; }
-        .button { width: 100%; text-align: center; }
+        main {
+          margin: 56px auto 16px !important;
+          padding: 0 12px !important;
+        }
+        h1 {
+          font-size: 1.4rem !important;
+        }
+        #results {
+          max-height: 180px !important;
+        }
+        #map {
+          height: 340px !important;
+        }
+        .button {
+          width: 100%;
+          text-align: center;
+        }
       }
       @media (max-width: 480px) {
-        main { margin: 52px auto 12px !important; padding: 0 10px !important; }
-        h1 { font-size: 1.2rem !important; }
-        #results { max-height: 160px !important; }
-        #map { height: 300px !important; }
+        main {
+          margin: 52px auto 12px !important;
+          padding: 0 10px !important;
+        }
+        h1 {
+          font-size: 1.2rem !important;
+        }
+        #results {
+          max-height: 160px !important;
+        }
+        #map {
+          height: 300px !important;
+        }
         /* Compact controls */
-        label[for="q"] { margin-bottom: 6px !important; }
-        #q { padding: 10px 12px !important; }
+        label[for="q"] {
+          margin-bottom: 6px !important;
+        }
+        #q {
+          padding: 10px 12px !important;
+        }
       }
     </style>
   </head>
   <body>
     <div id="navbar-container"></div>
 
-    <main style="max-width: 1000px; margin: 40px auto 24px; padding: 0 16px;">
-      <h1 id="page-title" style="text-align: center; color: #fff; margin-bottom: 16px;">WPLACE Lat/Long Locator & WPLACE Map Link Generator</h1>
-      <p id="page-subtitle" style="text-align: center; color: #ccc; margin-bottom: 24px;">Enter a city or place, select a result, then get a shareable <code>wplace.live</code> map link.</p>
+    <main style="max-width: 1000px; margin: 40px auto 24px; padding: 0 16px">
+      <h1
+        id="page-title"
+        style="text-align: center; color: #fff; margin-bottom: 16px"
+      >
+        WPLACE Lat/Long Locator & WPLACE Map Link Generator
+      </h1>
+      <p
+        id="page-subtitle"
+        style="text-align: center; color: #ccc; margin-bottom: 24px"
+      >
+        Enter a city or place, select a result, then get a shareable
+        <code>wplace.live</code> map link.
+      </p>
 
-      <section style="display: grid; grid-template-columns: 1fr; gap: 16px;">
+      <section style="display: grid; grid-template-columns: 1fr; gap: 16px">
         <div>
-          <label id="label-q" for="q" style="display:block; color:#ccc; margin-bottom:8px;">City/Place</label>
-          <input id="q" type="text" placeholder="e.g., Brazil / Germany / New York"
-                 style="width:100%; padding:12px 14px; border-radius:8px; border:1px solid #333; background:#111; color:#fff;" />
+          <label
+            id="label-q"
+            for="q"
+            style="display: block; color: #ccc; margin-bottom: 8px"
+            >City/Place</label
+          >
+          <input
+            id="q"
+            type="text"
+            placeholder="e.g., Brazil / Germany / New York"
+            style="
+              width: 100%;
+              padding: 12px 14px;
+              border-radius: 8px;
+              border: 1px solid #333;
+              background: #111;
+              color: #fff;
+            "
+          />
         </div>
 
-        <div style="display:flex; gap:12px; align-items:center; flex-wrap: wrap;">
+        <div
+          style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap"
+        >
           <button id="searchBtn" class="button">Find Coordinates</button>
-          <label id="label-zoom" style="color:#ccc;">Zoom:
-            <input id="zoomInput" type="number" min="1" max="19" step="1" value="13"
-                   style="width:80px; padding:8px 10px; border-radius:8px; border:1px solid #333; background:#111; color:#fff; margin-left:6px;" />
+          <label id="label-zoom" style="color: #ccc"
+            >Zoom:
+            <input
+              id="zoomInput"
+              type="number"
+              min="1"
+              max="19"
+              step="1"
+              value="13"
+              style="
+                width: 80px;
+                padding: 8px 10px;
+                border-radius: 8px;
+                border: 1px solid #333;
+                background: #111;
+                color: #fff;
+                margin-left: 6px;
+              "
+            />
           </label>
-          <a id="wplaceLink" href="https://wplace.live/" target="_blank" rel="noopener" class="button">Jump to wplace.live</a>
-          <span id="status" style="color:#999;"></span>
+          <a
+            id="wplaceLink"
+            href="https://wplace.live/"
+            target="_blank"
+            rel="noopener"
+            class="button"
+            >Jump to wplace.live</a
+          >
+          <span id="status" style="color: #999"></span>
         </div>
 
-        <div id="results" style="background:#0d0d0d; border:1px solid #222; border-radius:10px; padding:12px;
-             max-height:220px; overflow:auto;"></div>
+        <div
+          id="results"
+          style="
+            background: #0d0d0d;
+            border: 1px solid #222;
+            border-radius: 10px;
+            padding: 12px;
+            max-height: 220px;
+            overflow: auto;
+          "
+        ></div>
 
-        <div id="map" style="height: 420px; border-radius: 10px; overflow: hidden; border: 1px solid #222;"></div>
+        <div
+          id="map"
+          style="
+            height: 420px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #222;
+          "
+        ></div>
 
-        <p id="data-source" style="color:#777; font-size: 0.9rem;">Data source: OpenStreetMap Nominatim. Please follow the usage policy and keep attribution.</p>
+        <p id="data-source" style="color: #777; font-size: 0.9rem">
+          Data source: OpenStreetMap Nominatim. Please follow the usage policy
+          and keep attribution.
+        </p>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="site-footer__inner">
-        <div style="margin-bottom: 20px;">
+        <div style="margin-bottom: 20px">
           <h3 data-i18n="footerTitle">Wplace Pixel Tool</h3>
-          <p data-i18n="footerDescription">The ultimate pixel art converter for Wplace platform</p>
+          <p data-i18n="footerDescription">
+            The ultimate pixel art converter for Wplace platform
+          </p>
         </div>
         <div class="site-footer__groups">
           <div class="site-footer__group">
@@ -109,7 +227,11 @@
               <li><a href="https://wplace.live">Wplace Platform</a></li>
               <li><a href="/geocode">Map Link (Lat/Long Locator)</a></li>
               <li><a href="/blue-marble">Blue Marble</a></li>
-              <li><a href="https://github.com/PEPOAFONSO/color_converter_wplace">GitHub</a></li>
+              <li>
+                <a href="https://github.com/PEPOAFONSO/color_converter_wplace"
+                  >GitHub</a
+                >
+              </li>
             </ul>
           </div>
           <div class="site-footer__group">
@@ -122,13 +244,33 @@
         </div>
       </div>
       <div class="site-footer__bottom">
-        <p data-i18n="copyright">© 2025 Wplace Pixel Tool. All rights reserved.</p>
+        <p data-i18n="copyright">
+          © 2025 Wplace Pixel Tool. All rights reserved.
+        </p>
       </div>
       <div id="fazier-badge" class="site-footer__badges">
-        <a href="https://fazier.com/launches/www.wplace.wiki" target="_blank"><img src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=featured&theme=dark" width=150 alt="Fazier badge" /></a>
-        <a href="https://indie.deals?ref=https%3A%2F%2Fwww.wplace.wiki" target="_blank" rel="noopener noreferrer">Indie.Deals</a>
-        <a href="https://twelve.tools" target="_blank"><img src="https://twelve.tools/badge3-dark.svg" alt="Featured on Twelve Tools" width="200" height="54"></a>
-        <a href="https://www.aiproductlist.org" title="AI Sites | 2025">AI Product List</a>
+        <a href="https://fazier.com/launches/www.wplace.wiki" target="_blank"
+          ><img
+            src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=featured&theme=dark"
+            width="150"
+            alt="Fazier badge"
+        /></a>
+        <a
+          href="https://indie.deals?ref=https%3A%2F%2Fwww.wplace.wiki"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Indie.Deals</a
+        >
+        <a href="https://twelve.tools" target="_blank"
+          ><img
+            src="https://twelve.tools/badge3-dark.svg"
+            alt="Featured on Twelve Tools"
+            width="200"
+            height="54"
+        /></a>
+        <a href="https://www.aiproductlist.org" title="AI Sites | 2025"
+          >AI Product List</a
+        >
       </div>
     </footer>
 
@@ -137,72 +279,267 @@
         const container = document.querySelector(containerSelector);
         if (!container) return;
         try {
-          const res = await fetch(url, { cache: 'no-store' });
+          const res = await fetch(url, { cache: "no-store" });
           const html = await res.text();
           container.innerHTML = html;
         } catch (e) {
-          console.error('Failed to inject fragment', url, e);
+          console.error("Failed to inject fragment", url, e);
         }
       }
-      document.addEventListener('DOMContentLoaded', async () => {
-        await injectFragment('#navbar-container', '/components/navbar.html');
+      document.addEventListener("DOMContentLoaded", async () => {
+        await injectFragment("#navbar-container", "/components/navbar.html");
         if (window.initNavbarInteractions) window.initNavbarInteractions();
       });
     </script>
     <script src="/navbar.js"></script>
     <script>
       // Geocode page translations
-      (function(){
+      (function () {
         const T = {
           en: {
-            title: 'WPLACE Lat/Long Locator & WPLACE Map Link Generator',
-            subtitle: 'Enter a city or place, select a result, then get a shareable wplace.live map link.',
-            cityLabel: 'City/Place',
-            placeholder: 'e.g., Brazil / Germany / New York',
-            findBtn: 'Find Coordinates',
-            zoom: 'Zoom:',
-            jump: 'Jump to wplace.live',
-            source: 'Data source: OpenStreetMap Nominatim. Please follow the usage policy and keep attribution.',
-            searching: 'Searching…',
-            noResults: 'No results found',
-            searchFailed: 'Search failed, please try again later'
+            title: "WPLACE Lat/Long Locator & WPLACE Map Link Generator",
+            subtitle:
+              "Enter a city or place, select a result, then get a shareable wplace.live map link.",
+            cityLabel: "City/Place",
+            placeholder: "e.g., Brazil / Germany / New York",
+            findBtn: "Find Coordinates",
+            zoom: "Zoom:",
+            jump: "Jump to wplace.live",
+            source:
+              "Data source: OpenStreetMap Nominatim. Please follow the usage policy and keep attribution.",
+            searching: "Searching…",
+            noResults: "No results found",
+            searchFailed: "Search failed, please try again later",
+          },
+          de: {
+            title:
+              "WPLACE Breiten- / Längengrad-Suche & WPLACE Kartenlink-Generator",
+            subtitle:
+              "Gib eine Stadt oder einen Ort ein, wähle ein Ergebnis aus und erhalte einen teilbaren wplace.live Kartenlink.",
+            cityLabel: "Stadt/Ort",
+            placeholder: "z.B. Brasilien / Deutschland / New York",
+            findBtn: "Koordinaten suchen",
+            zoom: "Zoom:",
+            jump: "Zu wplace.live springen",
+            source:
+              "Datenquelle: OpenStreetMap Nominatim. Bitte befolge die Nutzungsbedingungen und füge die Urheberangabe bei.",
+            searching: "Suche läuft…",
+            noResults: "Keine Ergebnisse gefunden",
+            searchFailed:
+              "Suche fehlgeschlagen. Bitte versuche es später noch einmal.",
           },
           pt: {
-            title: 'Localizador Lat/Long & Gerador de Link do Mapa do WPLACE',
-            subtitle: 'Digite uma cidade ou local, selecione um resultado e gere um link compartilhável do wplace.live.',
-            cityLabel: 'Cidade/Local',
-            placeholder: 'ex.: Brasil / Alemanha / Nova Iorque',
-            findBtn: 'Encontrar Coordenadas',
-            zoom: 'Zoom:',
-            jump: 'Ir para wplace.live',
-            source: 'Fonte de dados: OpenStreetMap Nominatim. Siga a política de uso e mantenha a atribuição.',
-            searching: 'Pesquisando…',
-            noResults: 'Nenhum resultado encontrado',
-            searchFailed: 'Pesquisa falhou, tente novamente mais tarde'
-          }
+            title: "Localizador Lat/Long & Gerador de Link do Mapa do WPLACE",
+            subtitle:
+              "Digite uma cidade ou local, selecione um resultado e gere um link compartilhável do wplace.live.",
+            cityLabel: "Cidade/Local",
+            placeholder: "ex.: Brasil / Alemanha / Nova Iorque",
+            findBtn: "Encontrar Coordenadas",
+            zoom: "Zoom:",
+            jump: "Ir para wplace.live",
+            source:
+              "Fonte de dados: OpenStreetMap Nominatim. Siga a política de uso e mantenha a atribuição.",
+            searching: "Pesquisando…",
+            noResults: "Nenhum resultado encontrado",
+            searchFailed: "Pesquisa falhou, tente novamente mais tarde",
+          },
+          es: {
+            title:
+              "WPLACE Buscador de Latitud/Longitud y Generador de Enlaces de Mapa WPLACE",
+            subtitle:
+              "Introduce una ciudad o lugar, selecciona un resultado y obtén un enlace de mapa wplace.live para compartir.",
+            cityLabel: "Ciudad/Lugar",
+            placeholder: "ej. Brasil / Alemania / Nueva York",
+            findBtn: "Buscar Coordenadas",
+            zoom: "Zoom:",
+            jump: "Ir a wplace.live",
+            source:
+              "Fuente de datos: OpenStreetMap Nominatim. Por favor, sigue la política de uso y mantén la atribución.",
+            searching: "Buscando…",
+            noResults: "No se encontraron resultados",
+            searchFailed:
+              "La búsqueda falló, por favor intenta de nuevo más tarde.",
+          },
+          fr: {
+            title:
+              "WPLACE Localisateur Lat/Long & Générateur de Lien de Carte WPLACE",
+            subtitle:
+              "Entrez une ville ou un lieu, sélectionnez un résultat, puis obtenez un lien de carte wplace.live partageable.",
+            cityLabel: "Ville/Lieu",
+            placeholder: "ex. Brésil / Allemagne / New York",
+            findBtn: "Trouver les Coordonnées",
+            zoom: "Zoom:",
+            jump: "Aller à wplace.live",
+            source:
+              "Source des données: OpenStreetMap Nominatim. Veuillez suivre la politique d'utilisation et conserver l'attribution.",
+            searching: "Recherche en cours…",
+            noResults: "Aucun résultat trouvé",
+            searchFailed:
+              "La recherche a échoué, veuillez réessayer plus tard.",
+          },
+          uk: {
+            title:
+              "WPLACE Локатор Широти/Довготи та Генератор Посилань на Карту WPLACE",
+            subtitle:
+              "Введіть місто або місце, виберіть результат, а потім отримайте посилання на карту wplace.live, яким можна поділитися.",
+            cityLabel: "Місто/Місце",
+            placeholder: "напр. Бразилія / Німеччина / Нью-Йорк",
+            findBtn: "Знайти Координати",
+            zoom: "Масштаб:",
+            jump: "Перейти до wplace.live",
+            source:
+              "Джерело даних: OpenStreetMap Nominatim. Будь ласка, дотримуйтесь політики використання та зберігайте атрибуцію.",
+            searching: "Пошук…",
+            noResults: "Результатів не знайдено",
+            searchFailed: "Пошук не вдався, спробуйте ще раз пізніше.",
+          },
+          vi: {
+            title:
+              "Công cụ định vị kinh/vĩ độ WPLACE & Trình tạo liên kết bản đồ WPLACE",
+            subtitle:
+              "Nhập một thành phố hoặc địa điểm, chọn một kết quả, sau đó nhận một liên kết bản đồ wplace.live có thể chia sẻ.",
+            cityLabel: "Thành phố/Địa điểm",
+            placeholder: "ví dụ: Brazil / Đức / New York",
+            findBtn: "Tìm Tọa độ",
+            zoom: "Thu phóng:",
+            jump: "Chuyển đến wplace.live",
+            source:
+              "Nguồn dữ liệu: OpenStreetMap Nominatim. Vui lòng tuân thủ chính sách sử dụng và giữ nguyên nguồn gốc.",
+            searching: "Đang tìm kiếm…",
+            noResults: "Không tìm thấy kết quả",
+            searchFailed: "Tìm kiếm thất bại, vui lòng thử lại sau.",
+          },
+          pl: {
+            title:
+              "Lokalizator szerokości/długości geograficznej WPLACE & Generator linków do mapy WPLACE",
+            subtitle:
+              "Wprowadź miasto lub miejsce, wybierz wynik, a następnie uzyskaj link do mapy wplace.live, który można udostępnić.",
+            cityLabel: "Miasto/Miejsce",
+            placeholder: "np. Brazylia / Niemcy / Nowy Jork",
+            findBtn: "Znajdź Współrzędne",
+            zoom: "Zoom:",
+            jump: "Przejdź do wplace.live",
+            source:
+              "Źródło danych: OpenStreetMap Nominatim. Prosimy o przestrzeganie zasad użytkowania i zachowanie atrybucji.",
+            searching: "Szukanie…",
+            noResults: "Nie znaleziono wyników",
+            searchFailed:
+              "Wyszukiwanie nie powiodło się, spróbuj ponownie później.",
+          },
+          ja: {
+            title:
+              "WPLACE 緯度 / 経度ロケーター＆WPLACE マップリンクジェネレーター",
+            subtitle:
+              "都市や場所を入力し、結果を選択すると、共有可能な wplace.live マップリンクが生成されます。",
+            cityLabel: "都市 / 場所",
+            placeholder: "例：ブラジル / ドイツ / ニューヨーク",
+            findBtn: "座標を探す",
+            zoom: "ズーム:",
+            jump: "wplace.live へ移動",
+            source:
+              "データソース: OpenStreetMap Nominatim。使用ポリシーに従い、帰属表示を維持してください。",
+            searching: "検索中…",
+            noResults: "結果が見つかりませんでした",
+            searchFailed: "検索に失敗しました。後でもう一度お試しください。",
+          },
+          de_CH: {
+            title:
+              "WPLACE Breiten- / Längengrad-Suche & WPLACE Kartenlink-Generator",
+            subtitle:
+              "Gib eine Stadt oder einen Ort ein, wähle ein Ergebnis aus und erhalte einen teilbaren wplace.live Kartenlink.",
+            cityLabel: "Stadt/Ort",
+            placeholder: "z.B. Brasilien / Deutschland / New York",
+            findBtn: "Koordinaten suchen",
+            zoom: "Zoom:",
+            jump: "Zu wplace.live springen",
+            source:
+              "Datenquelle: OpenStreetMap Nominatim. Bitte befolge die Nutzungsbedingungen und füge die Urheberangabe bei.",
+            searching: "Suche läuft…",
+            noResults: "Keine Ergebnisse gefunden",
+            searchFailed:
+              "Suche fehlgeschlagen. Bitte versuche es später noch einmal.",
+          },
+          nl: {
+            title: "WPLACE Lat/Lon Locator & WPLACE Kaartlinkgenerator",
+            subtitle:
+              "Voer een stad of plaats in, selecteer een resultaat en krijg een deelbare wplace.live kaartlink.",
+            cityLabel: "Stad/Plaats",
+            placeholder: "bijv. Brazilië / Duitsland / New York",
+            findBtn: "Vind Coördinaten",
+            zoom: "Zoom:",
+            jump: "Ga naar wplace.live",
+            source:
+              "Gegevensbron: OpenStreetMap Nominatim. Volg a.u.b. het gebruiksbeleid en behoud de naamsvermelding.",
+            searching: "Bezig met zoeken…",
+            noResults: "Geen resultaten gevonden",
+            searchFailed: "Zoeken mislukt, probeer het later opnieuw.",
+          },
+          ru: {
+            title:
+              "WPLACE Локатор Широты/Долготы и Генератор Ссылок на Карту WPLACE",
+            subtitle:
+              "Введите город или место, выберите результат, затем получите ссылку на карту wplace.live, которой можно поделиться.",
+            cityLabel: "Город/Место",
+            placeholder: "напр. Бразилия / Германия / Нью-Йорк",
+            findBtn: "Найти Координаты",
+            zoom: "Масштаб:",
+            jump: "Перейти на wplace.live",
+            source:
+              "Источник данных: OpenStreetMap Nominatim. Пожалуйста, следуйте политике использования и сохраняйте атрибуцию.",
+            searching: "Идет поиск…",
+            noResults: "Результатов не найдено",
+            searchFailed:
+              "Поиск не удался, пожалуйста, попробуйте еще раз позже.",
+          },
+          tr: {
+            title:
+              "WPLACE Enlem/Boylam Konumlandırıcı & WPLACE Harita Bağlantı Oluşturucu",
+            subtitle:
+              "Bir şehir veya yer girin, bir sonuç seçin ve ardından paylaşılabilir bir wplace.live harita bağlantısı alın.",
+            cityLabel: "Şehir/Yer",
+            placeholder: "örn. Brezilya / Almanya / New York",
+            findBtn: "Koordinatları Bul",
+            zoom: "Yakınlaştır:",
+            jump: "wplace.live'a git",
+            source:
+              "Veri kaynağı: OpenStreetMap Nominatim. Lütfen kullanım politikasını takip edin ve atıfı koruyun.",
+            searching: "Aranıyor…",
+            noResults: "Sonuç bulunamadı",
+            searchFailed:
+              "Arama başarısız oldu, lütfen daha sonra tekrar deneyin.",
+          },
         };
         window.geocodeTranslations = T;
-        function apply(lang){
+        function apply(lang) {
           const L = T[lang] || T.en;
           const qs = (sel) => document.querySelector(sel);
-          const title = qs('#page-title'); if (title) title.textContent = L.title;
-          const subtitle = qs('#page-subtitle'); if (subtitle) subtitle.textContent = L.subtitle;
-          const labelQ = qs('#label-q'); if (labelQ) labelQ.textContent = L.cityLabel;
-          const input = qs('#q'); if (input) input.placeholder = L.placeholder;
-          const btn = qs('#searchBtn'); if (btn) btn.textContent = L.findBtn;
-          const lz = qs('#label-zoom'); if (lz) lz.firstChild && (lz.firstChild.textContent = L.zoom + ' ');
-          const jump = qs('#wplaceLink'); if (jump) jump.textContent = L.jump;
-          const source = qs('#data-source'); if (source) source.textContent = L.source;
+          const title = qs("#page-title");
+          if (title) title.textContent = L.title;
+          const subtitle = qs("#page-subtitle");
+          if (subtitle) subtitle.textContent = L.subtitle;
+          const labelQ = qs("#label-q");
+          if (labelQ) labelQ.textContent = L.cityLabel;
+          const input = qs("#q");
+          if (input) input.placeholder = L.placeholder;
+          const btn = qs("#searchBtn");
+          if (btn) btn.textContent = L.findBtn;
+          const lz = qs("#label-zoom");
+          if (lz) lz.firstChild && (lz.firstChild.textContent = L.zoom + " ");
+          const jump = qs("#wplaceLink");
+          if (jump) jump.textContent = L.jump;
+          const source = qs("#data-source");
+          if (source) source.textContent = L.source;
         }
         window.applyGeocodeTranslations = apply;
-        document.addEventListener('DOMContentLoaded', () => {
-          const saved = localStorage.getItem('lang') || 'en';
+        document.addEventListener("DOMContentLoaded", () => {
+          const saved = localStorage.getItem("lang") || "en";
           apply(saved);
         });
-        window.addEventListener('wplace:langchange', (e) => apply(e.detail && e.detail.lang || 'en'));
+        window.addEventListener("wplace:langchange", (e) =>
+          apply((e.detail && e.detail.lang) || "en")
+        );
       })();
     </script>
     <script src="/geocode/geocode.js" defer></script>
   </body>
 </html>
-
