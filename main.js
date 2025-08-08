@@ -1067,11 +1067,11 @@ const translations = {
   }
 };
 
-// Language selector change event
-document.getElementById("lang-select").addEventListener("change", function () {
-  const lang = this.value;
-  applyTranslations(lang);
-  localStorage.setItem("lang", lang);
+// Language change handling (robust against async navbar injection)
+window.addEventListener('wplace:langchange', (e) => {
+  const lang = (e && e.detail && e.detail.lang) || localStorage.getItem('lang') || 'pt';
+  try { applyTranslations(lang); } catch (_) {}
+  localStorage.setItem('lang', lang);
 });
 
 // Load saved or detected language on page load
@@ -1100,7 +1100,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Apply language and store it
-  document.getElementById("lang-select").value = savedLang;
+  const sel = document.getElementById("lang-select");
+  if (sel) {
+    try { sel.value = savedLang; } catch (_) {}
+  }
   applyTranslations(savedLang);
   localStorage.setItem("lang", savedLang);
 });

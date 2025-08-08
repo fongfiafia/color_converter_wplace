@@ -27,26 +27,6 @@ function initNavbarInteractions() {
       link.classList.add('active');
     }
   });
-
-  // 语言选择器：持久化并广播事件，供各页面自行处理
-  const langSelect = document.getElementById('lang-select');
-  if (langSelect) {
-    const saved = localStorage.getItem('lang');
-    if (saved) {
-      try { langSelect.value = saved; } catch (_) {}
-    }
-    langSelect.addEventListener('change', () => {
-      const newLang = langSelect.value;
-      localStorage.setItem('lang', newLang);
-      try {
-        window.dispatchEvent(new CustomEvent('wplace:langchange', { detail: { lang: newLang } }));
-      } catch (_) {}
-      // 若页面暴露了 applyTranslations，则立即应用
-      if (typeof window.applyTranslations === 'function') {
-        window.applyTranslations(newLang);
-      }
-    });
-  }
 }
 
 document.addEventListener('DOMContentLoaded', function () {

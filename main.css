@@ -297,3 +297,40 @@ label {
   right: 16px;
   top: 16px;
 }
+
+/* Footer fallback styles (ensure correct styles on pages that might not pick up navbar.css) */
+.site-footer {
+  margin-top: 60px;
+  padding: 20px 16px;
+  background: #1a1a1a;
+  border-top: 1px solid #333;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.site-footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.site-footer h3 { color: #ffffff; font-size: 1.2rem; margin: 0 0 16px 0; }
+.site-footer p { color: #cccccc; font-size: 0.9rem; margin: 0; }
+
+.site-footer__groups { display: flex; gap: 40px; }
+.site-footer__group h4 { color: #ffffff; font-size: 1rem; margin: 0 0 12px 0; }
+.site-footer__list { list-style: none; padding: 0; margin: 0; }
+.site-footer__list li { margin-bottom: 8px; }
+.site-footer__list a { color: #cccccc; text-decoration: none; }
+.site-footer__list a:hover { color: #90CAF9; }
+
+.site-footer__bottom { max-width: 1200px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid #333; text-align: center; }
+.site-footer__badges { text-align: center; margin: 10px auto 20px; padding-top: 2px; justify-content: center; display: flex; gap: 20px; max-width: 1200px; }
+
+@media (max-width: 768px) {
+  .site-footer__groups { gap: 20px; }
+}
