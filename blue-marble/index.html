@@ -83,268 +83,7 @@
       ]
     }
     </script>
-    <style>
-    /* Navbar styles */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0, 0, 0, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid #333;
-      padding: 0 24px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 1000;
-    }
-    
-    .navbar-brand {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #fff;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .navbar-brand:hover {
-      color: #64B5F6;
-    }
-    
-    .navbar-brand img {
-      height: 32px;
-      border-radius: 6px;
-      margin: 0;
-      border: none;
-    }
-    
-    .navbar-links {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-    }
-    
-    .nav-link {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      padding: 8px 16px;
-      border-radius: 8px;
-      transition: all 0.2s ease;
-    }
-    
-    .nav-link:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: #64B5F6;
-    }
-    
-    .nav-link.active {
-      background: #64B5F6;
-      color: #000;
-    }
-    
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 24px;
-      height: 18px;
-      cursor: pointer;
-      padding: 0;
-      background: none;
-      border: none;
-    }
-    
-    .menu-toggle span {
-      display: block;
-      width: 100%;
-      height: 2px;
-      background-color: #fff;
-      transition: all 0.3s ease;
-    }
-    
-    /* Page styles */
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-size: 16px;
-      padding: 80px 20px 20px;
-      margin: 0;
-      background: #000000;
-      color: #ffffff;
-      min-height: 100vh;
-      line-height: 1.6;
-    }
-    
-    .content {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    
-    h1, h2, h3, h4, h5 {
-      color: #ffffff;
-      margin-top: 32px;
-      margin-bottom: 16px;
-      font-weight: 700;
-    }
-    
-    h1 {
-      font-size: 2.5rem;
-      text-align: center;
-      margin-top: 40px;
-    }
-    
-    h2 {
-      font-size: 2rem;
-      border-bottom: 1px solid #333;
-      padding-bottom: 8px;
-    }
-    
-    h3 {
-      font-size: 1.5rem;
-    }
-    
-    a {
-      color: #64B5F6;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-    
-    a:hover {
-      color: #90CAF9;
-      text-decoration: underline;
-    }
-    
-    code {
-      background: #1a1a1a;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-family: 'Consolas', 'Monaco', monospace;
-      font-size: 0.9em;
-      color: #E91E63;
-    }
-    
-    ul, ol {
-      padding-left: 24px;
-      margin: 16px 0;
-    }
-    
-    li {
-      margin: 8px 0;
-    }
-    
-    details {
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 8px;
-      padding: 16px;
-      margin: 16px 0;
-      transition: all 0.2s ease;
-    }
-    
-    details:hover {
-      border-color: #444;
-      transform: translateY(-1px);
-      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
-    }
-    
-    summary {
-      cursor: pointer;
-      font-weight: 500;
-      color: #fff;
-      padding: 8px 0;
-    }
-    
-    summary:hover {
-      color: #90CAF9;
-    }
-    
-    img {
-      max-width: 100%;
-      border-radius: 8px;
-      margin: 16px 0;
-      border: 1px solid #333;
-    }
-    
-    p {
-      margin: 16px 0;
-      line-height: 1.8;
-    }
-    
-    b, strong {
-      color: #90CAF9;
-    }
-    
-    sup {
-      color: #888;
-      font-size: 0.75em;
-    }
-    
-    /* Mobile responsive */
-    @media (max-width: 768px) {
-      body {
-        font-size: 14px;
-        padding: 80px 16px 16px;
-      }
-      
-      h1 {
-        font-size: 2rem;
-      }
-      
-      h2 {
-        font-size: 1.75rem;
-      }
-      
-      details {
-        padding: 12px;
-      }
-      
-      .navbar {
-        padding: 0 16px;
-      }
-      
-      .navbar-brand {
-        font-size: 1.2rem;
-      }
-      
-      .navbar-links {
-        gap: 12px;
-      }
-      
-      .nav-link {
-        padding: 6px 12px;
-        font-size: 0.9rem;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .menu-toggle {
-        display: flex;
-      }
-      
-      .navbar-links {
-        position: fixed;
-        top: 60px;
-        left: 0;
-        right: 0;
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(10px);
-        flex-direction: column;
-        padding: 16px;
-        transform: translateY(-100%);
-        transition: transform 0.3s ease;
-        border-bottom: 1px solid #333;
-      }
-      
-      .navbar-links.active {
-        transform: translateY(0);
-      }
-    }
-    </style>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
 <nav class="navbar">
@@ -353,9 +92,14 @@
     <span>Wplace Tool</span>
   </a>
   <div class="navbar-links">
-    <a href="/" class="nav-link">Home</a>
-    <a href="/blue-marble" class="nav-link active">Blue Marble</a>
-    <a href="https://github.com/PEPOAFONSO/color_converter_wplace" class="nav-link" target="_blank">GitHub</a>
+    <a href="/" class="nav-link" data-i18n="navHome">Home</a>
+    <a href="/blue-marble" class="nav-link active" data-i18n="navBlueMarble">Blue Marble</a>
+    <div class="lang-select-container">
+        <select id="lang-select" class="nav-lang-select">
+          <option value="en">🇺🇸 EN</option>
+          <option value="pt">🇵🇹 PT</option>
+        </select>
+      </div>
   </div>
   <button class="menu-toggle">
     <span></span>
@@ -364,40 +108,40 @@
   </button>
 </nav>
 <div class="content">
-<h1 id="blue-marble">How To Use Blue Marble - Complete Wplace Plugin Guide</h1>
+<h1 id="blue-marble" data-i18n="mainTitle">How To Use Blue Marble - Complete Wplace Plugin Guide</h1>
 
-<h2 id="overview">What is Blue Marble Plugin?</h2>
-<p>
+<h2 id="overview" data-i18n="overviewTitle">What is Blue Marble Plugin?</h2>
+<p data-i18n-html="overviewText1">
     <strong>Blue Marble</strong> is the most popular <strong>wplace plugin</strong> and powerful <strong>wplace hack</strong> that enhances your <a href="https://wplace.live/" target="_blank" rel="noopener noreferrer">wplace.live</a> experience. This comprehensive <strong>Blue Marble tutorial</strong> will guide you through installation and usage of this essential <strong>wplace userscript</strong>.
 </p>
-<p>
+<p data-i18n-html="overviewText2">
     Blue Marble provides advanced features like template overlays, coordinate tracking, and pixel placement assistance - making it the go-to choice for serious wplace players. Learn <strong>how to use Blue Marble</strong> effectively with our step-by-step guide.
 </p>
-<p>
+<p data-i18n-html="overviewText3">
     Looking for more <strong>wplace tools</strong>? Also check out our <a href="https://wplace.wiki" target="_blank" rel="noopener noreferrer">Wplace Pixel Art Converter</a> to transform your images into perfect pixel art for wplace.
 </p>
 
 <div class="seo-keywords" style="background: #1a1a1a; padding: 16px; border-radius: 8px; margin: 20px 0; border: 1px solid #333;">
-    <h3 style="margin-top: 0; color: #64B5F6;">🎯 What You'll Learn</h3>
+    <h3 style="margin-top: 0; color: #64B5F6;" data-i18n="whatYouLearnTitle">🎯 What You'll Learn</h3>
     <ul style="margin-bottom: 0;">
-        <li><strong>Blue Marble installation</strong> on Chrome, Firefox, and Edge</li>
-        <li>How to use <strong>Blue Marble plugin</strong> for template management</li>
-        <li>Advanced <strong>wplace hack</strong> techniques and coordinates</li>
-        <li>Template settings and transparent pixel handling</li>
-        <li>Troubleshooting common <strong>wplace plugins</strong> issues</li>
+        <li data-i18n="learnItem1"><strong>Blue Marble installation</strong> on Chrome, Firefox, and Edge</li>
+        <li data-i18n="learnItem2">How to use <strong>Blue Marble plugin</strong> for template management</li>
+        <li data-i18n="learnItem3">Advanced <strong>wplace hack</strong> techniques and coordinates</li>
+        <li data-i18n="learnItem4">Template settings and transparent pixel handling</li>
+        <li data-i18n="learnItem5">Troubleshooting common <strong>wplace plugins</strong> issues</li>
     </ul>
 </div>
 
-<h2 id="installation-instructions">Blue Marble Installation Guide - Step by Step</h2>
-<p>
+<h2 id="installation-instructions" data-i18n="installationTitle">Blue Marble Installation Guide - Step by Step</h2>
+<p data-i18n-html="installationText1">
     This <strong>Blue Marble installation</strong> guide covers all major browsers. The <strong>Blue Marble plugin</strong> works on desktop and mobile devices. Follow these detailed instructions to install this powerful <strong>wplace hack</strong> on your browser.
 </p>
-<p>
+<p data-i18n-html="installationText2">
     <strong>Supported Browsers:</strong> Chrome (recommended), Firefox, Microsoft Edge, and mobile browsers. Choose your browser below and follow the step-by-step <strong>Blue Marble tutorial</strong>.
 </p>
 <details>
     <summary>
-        <b>Install Chrome (Computer)</b> <sup>(Click to Expand)</sup>
+        <b data-i18n="installChrome">Install Chrome (Computer)</b> <sup data-i18n="clickToExpand">(Click to Expand)</sup>
     </summary>
     <ol>
         <li>Install the <a href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo" target="_blank" rel="noopener noreferrer">TamperMonkey</a> plugin for Chrome.
@@ -429,7 +173,7 @@
 </details>
 <details>
     <summary>
-        <b>Install Edge (Computer)</b> <sup>(Click to Expand)</sup>
+        <b data-i18n="installEdge">Install Edge (Computer)</b> <sup data-i18n="clickToExpand">(Click to Expand)</sup>
     </summary>
     <ol>
         <li>Install the <a href="https://microsoftedge.microsoft.com/addons/detail/iikmkjmpaadaobahmlepeloendndfphd" target="_blank" rel="noopener noreferrer">TamperMonkey</a> plugin for Microsoft Edge.
@@ -460,7 +204,7 @@
 </details>
 <details>
     <summary>
-        <b>Install Firefox (Computer)</b> <sup>(Click to Expand)</sup>
+        <b data-i18n="installFirefox">Install Firefox (Computer)</b> <sup data-i18n="clickToExpand">(Click to Expand)</sup>
     </summary>
     <ol>
         <li>Install the <a href="https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/" target="_blank" rel="noopener noreferrer">TamperMonkey</a> plugin for Firefox.
@@ -483,78 +227,84 @@
     </ol>
 </details>
 
-<h3 id="template-instructions">Template Instructions</h3>
-<p>
+<h3 id="template-instructions" data-i18n="templateTitle">Template Instructions</h3>
+<p data-i18n="templateText1">
     Blue Marble will display your template as the same size. If your image is 500 pixels tall and 300 pixels wide, the template will be 500 pixels tall and 300 pixels wide. Here is the instructions to display a template image on the canvas:
-    <ol>
-        <li>Find the pixel of the top left corner. Fill in <code>Tl X</code>, <code>Tl Y</code>, <code>Px X</code>, and <code>Px Y</code> with the coordinates. You can use the "Pin" icon to auto-fill the coordinates after clicking the pixel.
-        <br>
-        <img alt="Find template coordinates" src="https://raw.githubusercontent.com/SwingTheVine/Wplace-BlueMarble/main/docs/assets/TemplateCoordinates1.png"></li>
-        <li>Upload a PNG or WEBP image.</li>
-        <li>Click the "Enable" button.</li>
-    </ol>
 </p>
+<ol>
+    <li data-i18n="templateStep1">Find the pixel of the top left corner. Fill in <code>Tl X</code>, <code>Tl Y</code>, <code>Px X</code>, and <code>Px Y</code> with the coordinates. You can use the "Pin" icon to auto-fill the coordinates after clicking the pixel.
+    <br>
+    <img alt="Find template coordinates" src="https://raw.githubusercontent.com/SwingTheVine/Wplace-BlueMarble/main/docs/assets/TemplateCoordinates1.png"></li>
+    <li data-i18n="templateStep2">Upload a PNG or WEBP image.</li>
+    <li data-i18n="templateStep3">Click the "Enable" button.</li>
+</ol>
 
-<h3 id="script-settings">Script Settings</h3>
-<p>
+<h3 id="script-settings" data-i18n="scriptSettingsTitle">Script Settings</h3>
+<p data-i18n="scriptSettingsText">
     There are many settings available for the Blue Marble userscript! Through these settings, you can control how the script behaves.
 </p>
 
-<h3 id="template-settings">Template Settings</h3>
+<h3 id="template-settings" data-i18n="templateSettingsTitle">Template Settings</h3>
 <p>
-    <h4>Transparent Pixels</h4>
-    <p>
+    <h4 data-i18n="transparentPixelsTitle">Transparent Pixels</h4>
+    <p data-i18n="transparentPixelsText">
         Templates for Blue Marble work slightly different from normal. Since there is a "Transparent" color, and transparent pixels in templates are typically ignored, your template should have a custom color to signify "Transparent" colored pixels. If a specific pixel can be any color, it should be transparent in the template. If a specific pixel should be "Transparent" color, it should have the <code>#deface</code> hex color. Any <code>#deface</code> colored pixel in your template will be interpereted as the "Transparent" color. Any transparent colored pixel in your template will be interpereted as ignored.
     </p>
-    <h4>Coordinates</h4>
+    <h4 data-i18n="coordinatesTitle">Coordinates</h4>
     <p>
-        <h5>Tile Coordinates</h5>
-        <p>
+        <h5 data-i18n="tileCoordinatesTitle">Tile Coordinates</h5>
+        <p data-i18n="tileCoordinatesText">
             The coordinate system for wplace.live is unique. Instead of all pixels having a global coordinate number (x, y), the coordinate number is relative to the tile. This means you need to know the tile number and the coordinate number to do anything. In Blue Marble, the tile coordinates and the pixel coordinates are displayed when you click on a pixel. These are the coordinates you should use for aligning a template.
             <br>
             <img alt="Where to find tile coordinates" src="https://raw.githubusercontent.com/SwingTheVine/Wplace-BlueMarble/main/docs/assets/TemplateCoordinatesDisplay.png">
         </p>
-        <h5>Template Coordinates</h5>
-        <p>
+        <h5 data-i18n="templateCoordinatesTitle">Template Coordinates</h5>
+        <p data-i18n="templateCoordinatesText">
             The template is aligned from the top left corner of the template. You can auto-fill this position using the "pin" icon next to the coordinate input boxes.
         </p>
     </p>
 </p>
 
-<h2 id="how-versioning-works">How Versioning Works</h2>
-<p>
+<h2 id="how-versioning-works" data-i18n="versioningTitle">How Versioning Works</h2>
+<p data-i18n-html="versioningText">
     The versioning system for this userscript follows the <a href="https://semver.org/" target="_blank" rel="noopener noreferrer">Semantic Versioning rules</a>. As such, it is formatted in an <code>X.Y.Z</code> format where:
 </p>
 <ul>
-    <li>X is the major version. This is incremented when a non-backward compatible update is pushed. This is for new features that break previous versions of the userscript. Additionally, if wplace.live breaks the userscript, this will be incremented.</li>
-    <li>Y is the minor version. This is incremented whenever I push to GitHub. This is for stable bug-fixes and new (non-breaking) features.</li>
-    <li>Z is the patch version. This is incremented whenever I launch a development version of the userscript to test a patch. This is for unstable bug-fixes/features.</li>
-</ul>
+    <li data-i18n="versioningItem1">X is the major version. This is incremented when a non-backward compatible update is pushed. This is for new features that break previous versions of the userscript. Additionally, if wplace.live breaks the userscript, this will be incremented.</li>
+    <li data-i18n="versioningItem2">Y is the minor version. This is incremented whenever I push to GitHub. This is for stable bug-fixes and new (non-breaking) features.</li>
+    <li data-i18n="versioningItem3">Z is the patch version. This is incremented whenever I launch a development version of the userscript to test a patch. This is for unstable bug-fixes/features.</li>
+    </ul>
 
-<h2 id="licenses">Licenses</h2>
-<p>
+<h2 id="licenses" data-i18n="licensesTitle">Licenses</h2>
+<p data-i18n-html="licensesText">
     (Below, all mentions of the "userscript" refer to the "Blue Marble" userscript made by SwingTheVine) <br>
     Most of this userscript is licensed under the <code>Mozilla Public License Version 2.0</code> (MPL-2.0). All software, code, and libraries in this repository are licensed under the MPL-2.0 license. However, the "Blue Marble" image in this userscript is owned by NASA and is licensed under the <code>Creative Commons 0 1.0 Universal</code> (CC0 1.0) license.
 </p>
 
-<h2 id="faq">Frequently Asked Questions - Blue Marble Plugin</h2>
+<h2 id="faq" data-i18n="faqTitle">Frequently Asked Questions - Blue Marble Plugin</h2>
 
-<h3 id="is-blue-marble-malware">Is Blue Marble Plugin Safe to Use?</h3>
-<p><b>A:</b> Yes, <strong>Blue Marble</strong> is completely safe. This <strong>wplace plugin</strong> contains no malicious code. The entire <strong>Blue Marble</strong> source code is available in the <code>src/</code> folder on GitHub. If you have concerns about this <strong>wplace hack</strong>, you can review the code and build it yourself using the provided tools.</p>
+<h3 id="is-blue-marble-malware" data-i18n="faqSafeTitle">Is Blue Marble Plugin Safe to Use?</h3>
+<p data-i18n-html="faqSafeAnswer"><b>A:</b> Yes, <strong>Blue Marble</strong> is completely safe. This <strong>wplace plugin</strong> contains no malicious code. The entire <strong>Blue Marble</strong> source code is available in the <code>src/</code> folder on GitHub. If you have concerns about this <strong>wplace hack</strong>, you can review the code and build it yourself using the provided tools.</p>
 
-<h3 id="how-can-blue-marble-place-pixels-for-me">Does Blue Marble Auto-Place Pixels?</h3>
-<p><b>A:</b> No, <strong>Blue Marble plugin</strong> does not automatically place pixels. This <strong>wplace userscript</strong> is designed to assist with template overlays and coordinate tracking, but requires manual pixel placement to comply with wplace.live terms of service.</p>
+<h3 id="how-can-blue-marble-place-pixels-for-me" data-i18n="faqAutoTitle">Does Blue Marble Auto-Place Pixels?</h3>
+<p data-i18n-html="faqAutoAnswer"><b>A:</b> No, <strong>Blue Marble plugin</strong> does not automatically place pixels. This <strong>wplace userscript</strong> is designed to assist with template overlays and coordinate tracking, but requires manual pixel placement to comply with wplace.live terms of service.</p>
 
-<h3 id="how-do-i-hide-the-overlay">How to Hide Blue Marble Overlay?</h3>
-<p><b>A:</b> To hide the <strong>Blue Marble</strong> overlay, simply turn off the userscript in your TamperMonkey dashboard and refresh the wplace.live page. You can re-enable this <strong>wplace plugin</strong> anytime.</p>
+<h3 id="how-do-i-hide-the-overlay" data-i18n="faqHideTitle">How to Hide Blue Marble Overlay?</h3>
+<p data-i18n-html="faqHideAnswer"><b>A:</b> To hide the <strong>Blue Marble</strong> overlay, simply turn off the userscript in your TamperMonkey dashboard and refresh the wplace.live page. You can re-enable this <strong>wplace plugin</strong> anytime.</p>
 
-<h3 id="why-do-game-notifications-appear-on-top-of-the-overlay">Why Do Notifications Appear Over Blue Marble?</h3>
-<p><b>A:</b> Game notifications from wplace.live appear on top of the <strong>Blue Marble plugin</strong> overlay because they require immediate user attention. This <strong>wplace hack</strong> is designed to work harmoniously with the main game interface.</p>
+<h3 id="why-do-game-notifications-appear-on-top-of-the-overlay" data-i18n="faqNotificationTitle">Why Do Notifications Appear Over Blue Marble?</h3>
+<p data-i18n-html="faqNotificationAnswer"><b>A:</b> Game notifications from wplace.live appear on top of the <strong>Blue Marble plugin</strong> overlay because they require immediate user attention. This <strong>wplace hack</strong> is designed to work harmoniously with the main game interface.</p>
 
-<h3 id="blue-marble-not-working">Blue Marble Not Working - Troubleshooting</h3>
-<p><b>A:</b> If your <strong>Blue Marble plugin</strong> isn't working, try these steps: 1) Refresh wplace.live, 2) Check if TamperMonkey is enabled, 3) Verify the <strong>Blue Marble userscript</strong> is active in your dashboard, 4) Clear browser cache, 5) Reinstall the <strong>wplace plugin</strong>.</p>
+<h3 id="blue-marble-not-working" data-i18n="faqTroubleshootTitle">Blue Marble Not Working - Troubleshooting</h3>
+<p data-i18n-html="faqTroubleshootAnswer"><b>A:</b> If your <strong>Blue Marble plugin</strong> isn't working, try these steps: 1) Refresh wplace.live, 2) Check if TamperMonkey is enabled, 3) Verify the <strong>Blue Marble userscript</strong> is active in your dashboard, 4) Clear browser cache, 5) Reinstall the <strong>wplace plugin</strong>.</p>
 
 </div>
+  <script src="./translations.js?v=2"></script>
+  <script>
+    // Expose translations to the LanguageSwitcher
+    window.translations = window.translations || translations;
+  </script>
+  <script src="./lang-switcher.js?v=2"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
         const menuToggle = document.querySelector('.menu-toggle');
