@@ -67,19 +67,19 @@
     <div id="navbar-container"></div>
 
     <main style="max-width: 1000px; margin: 40px auto 24px; padding: 0 16px;">
-      <h1 style="text-align: center; color: #fff; margin-bottom: 16px;">WPLACE Lat/Long Locator & WPLACE Map Link Generator</h1>
-      <p style="text-align: center; color: #ccc; margin-bottom: 24px;">Enter a city or place, select a result, then get a shareable <code>wplace.live</code> map link.</p>
+      <h1 id="page-title" style="text-align: center; color: #fff; margin-bottom: 16px;">WPLACE Lat/Long Locator & WPLACE Map Link Generator</h1>
+      <p id="page-subtitle" style="text-align: center; color: #ccc; margin-bottom: 24px;">Enter a city or place, select a result, then get a shareable <code>wplace.live</code> map link.</p>
 
       <section style="display: grid; grid-template-columns: 1fr; gap: 16px;">
         <div>
-          <label for="q" style="display:block; color:#ccc; margin-bottom:8px;">City/Place</label>
+          <label id="label-q" for="q" style="display:block; color:#ccc; margin-bottom:8px;">City/Place</label>
           <input id="q" type="text" placeholder="e.g., Brazil / Germany / New York"
                  style="width:100%; padding:12px 14px; border-radius:8px; border:1px solid #333; background:#111; color:#fff;" />
         </div>
 
         <div style="display:flex; gap:12px; align-items:center; flex-wrap: wrap;">
           <button id="searchBtn" class="button">Find Coordinates</button>
-          <label style="color:#ccc;">Zoom:
+          <label id="label-zoom" style="color:#ccc;">Zoom:
             <input id="zoomInput" type="number" min="1" max="19" step="1" value="13"
                    style="width:80px; padding:8px 10px; border-radius:8px; border:1px solid #333; background:#111; color:#fff; margin-left:6px;" />
           </label>
@@ -92,7 +92,7 @@
 
         <div id="map" style="height: 420px; border-radius: 10px; overflow: hidden; border: 1px solid #222;"></div>
 
-        <p style="color:#777; font-size: 0.9rem;">Data source: OpenStreetMap Nominatim. Please follow the usage policy and keep attribution.</p>
+        <p id="data-source" style="color:#777; font-size: 0.9rem;">Data source: OpenStreetMap Nominatim. Please follow the usage policy and keep attribution.</p>
       </section>
     </main>
 
@@ -150,6 +150,58 @@
       });
     </script>
     <script src="/navbar.js"></script>
+    <script>
+      // Geocode page translations
+      (function(){
+        const T = {
+          en: {
+            title: 'WPLACE Lat/Long Locator & WPLACE Map Link Generator',
+            subtitle: 'Enter a city or place, select a result, then get a shareable wplace.live map link.',
+            cityLabel: 'City/Place',
+            placeholder: 'e.g., Brazil / Germany / New York',
+            findBtn: 'Find Coordinates',
+            zoom: 'Zoom:',
+            jump: 'Jump to wplace.live',
+            source: 'Data source: OpenStreetMap Nominatim. Please follow the usage policy and keep attribution.',
+            searching: 'Searching…',
+            noResults: 'No results found',
+            searchFailed: 'Search failed, please try again later'
+          },
+          pt: {
+            title: 'Localizador Lat/Long & Gerador de Link do Mapa do WPLACE',
+            subtitle: 'Digite uma cidade ou local, selecione um resultado e gere um link compartilhável do wplace.live.',
+            cityLabel: 'Cidade/Local',
+            placeholder: 'ex.: Brasil / Alemanha / Nova Iorque',
+            findBtn: 'Encontrar Coordenadas',
+            zoom: 'Zoom:',
+            jump: 'Ir para wplace.live',
+            source: 'Fonte de dados: OpenStreetMap Nominatim. Siga a política de uso e mantenha a atribuição.',
+            searching: 'Pesquisando…',
+            noResults: 'Nenhum resultado encontrado',
+            searchFailed: 'Pesquisa falhou, tente novamente mais tarde'
+          }
+        };
+        window.geocodeTranslations = T;
+        function apply(lang){
+          const L = T[lang] || T.en;
+          const qs = (sel) => document.querySelector(sel);
+          const title = qs('#page-title'); if (title) title.textContent = L.title;
+          const subtitle = qs('#page-subtitle'); if (subtitle) subtitle.textContent = L.subtitle;
+          const labelQ = qs('#label-q'); if (labelQ) labelQ.textContent = L.cityLabel;
+          const input = qs('#q'); if (input) input.placeholder = L.placeholder;
+          const btn = qs('#searchBtn'); if (btn) btn.textContent = L.findBtn;
+          const lz = qs('#label-zoom'); if (lz) lz.firstChild && (lz.firstChild.textContent = L.zoom + ' ');
+          const jump = qs('#wplaceLink'); if (jump) jump.textContent = L.jump;
+          const source = qs('#data-source'); if (source) source.textContent = L.source;
+        }
+        window.applyGeocodeTranslations = apply;
+        document.addEventListener('DOMContentLoaded', () => {
+          const saved = localStorage.getItem('lang') || 'en';
+          apply(saved);
+        });
+        window.addEventListener('wplace:langchange', (e) => apply(e.detail && e.detail.lang || 'en'));
+      })();
+    </script>
     <script src="./geocode.js" defer></script>
   </body>
 </html>

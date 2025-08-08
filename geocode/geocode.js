@@ -53,7 +53,11 @@
     if (!container) return;
     container.innerHTML = '';
     if (!items || items.length === 0) {
-      container.innerHTML = '<p style="color:#aaa">No results found</p>';
+      const L = (window.geocodeTranslations || {}).en;
+      const text = (window.applyGeocodeTranslations && localStorage.getItem('lang')
+        && (window.geocodeTranslations || {})[localStorage.getItem('lang')]?.noResults)
+        || L.noResults;
+      container.innerHTML = `<p style="color:#aaa">${text}</p>`;
       return;
     }
     const ul = document.createElement('ul');
@@ -93,7 +97,9 @@
 
   async function doSearch(query) {
     if (!query || !query.trim()) return;
-    setStatus('Searching…');
+    const lang = localStorage.getItem('lang') || 'en';
+    const T = (window.geocodeTranslations || {})[lang] || (window.geocodeTranslations || {}).en || {};
+    setStatus(T.searching || 'Searching…');
     try {
       const url = new URL(nominatimBase);
       // Use jsonv2 and include a contact email per Nominatim usage policy
@@ -115,7 +121,9 @@
       }
     } catch (e) {
       console.error(e);
-      setStatus('Search failed, please try again later');
+      const lang = localStorage.getItem('lang') || 'en';
+      const T = (window.geocodeTranslations || {})[lang] || (window.geocodeTranslations || {}).en || {};
+      setStatus(T.searchFailed || 'Search failed, please try again later');
     } finally {
       setStatus('');
     }
@@ -148,7 +156,9 @@
     // initialize default link state
     if (a) {
       a.href = 'https://wplace.live/';
-      a.textContent = 'Jump to wplace.live';
+      const lang = localStorage.getItem('lang') || 'en';
+      const T = (window.geocodeTranslations || {})[lang] || (window.geocodeTranslations || {}).en || {};
+      a.textContent = T.jump || 'Jump to wplace.live';
     }
   }
 
