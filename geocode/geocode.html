@@ -39,6 +39,29 @@
         "operatingSystem": "All"
       }
     </script>
+    <style>
+      /* Geocode page responsive tweaks */
+      @media (max-width: 1024px) {
+        main { margin: 64px auto 20px !important; padding: 0 14px !important; }
+        h1 { font-size: 1.6rem !important; }
+      }
+      @media (max-width: 768px) {
+        main { margin: 56px auto 16px !important; padding: 0 12px !important; }
+        h1 { font-size: 1.4rem !important; }
+        #results { max-height: 180px !important; }
+        #map { height: 340px !important; }
+        .button { width: 100%; text-align: center; }
+      }
+      @media (max-width: 480px) {
+        main { margin: 52px auto 12px !important; padding: 0 10px !important; }
+        h1 { font-size: 1.2rem !important; }
+        #results { max-height: 160px !important; }
+        #map { height: 300px !important; }
+        /* Compact controls */
+        label[for="q"] { margin-bottom: 6px !important; }
+        #q { padding: 10px 12px !important; }
+      }
+    </style>
   </head>
   <body>
     <div id="navbar-container"></div>
@@ -50,7 +73,7 @@
       <section style="display: grid; grid-template-columns: 1fr; gap: 16px;">
         <div>
           <label for="q" style="display:block; color:#ccc; margin-bottom:8px;">City/Place</label>
-          <input id="q" type="text" placeholder="e.g., Beijing Chaoyang / Paris / Tokyo"
+          <input id="q" type="text" placeholder="e.g., Brazil / Germany / New York"
                  style="width:100%; padding:12px 14px; border-radius:8px; border:1px solid #333; background:#111; color:#fff;" />
         </div>
 
