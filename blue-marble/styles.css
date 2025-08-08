@@ -1,97 +1,5 @@
 
-    /* Navbar styles */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0, 0, 0, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid #333;
-      padding: 0 24px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 1000;
-    }
-
-    .lang-select-container {
-        margin-left: 16px;
-        position: relative;
-    }
-
-    .nav-lang-select {
-        background: #1a1a1a;
-        color: #ffffff;
-        font-weight: 500;
-    }
-    
-    .navbar-brand {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #fff;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .navbar-brand:hover {
-      color: #64B5F6;
-    }
-    
-    .navbar-brand img {
-      height: 32px;
-      border-radius: 6px;
-      margin: 0;
-      border: none;
-    }
-    
-    .navbar-links {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-    }
-    
-    .nav-link {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      padding: 8px 16px;
-      border-radius: 8px;
-      transition: all 0.2s ease;
-    }
-    
-    .nav-link:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: #64B5F6;
-    }
-    
-    .nav-link.active {
-      background: #64B5F6;
-      color: #000;
-    }
-    
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 24px;
-      height: 18px;
-      cursor: pointer;
-      padding: 0;
-      background: none;
-      border: none;
-    }
-    
-    .menu-toggle span {
-      display: block;
-      width: 100%;
-      height: 2px;
-      background-color: #fff;
-      transition: all 0.3s ease;
-    }
+    /* Navbar styles moved to /navbar.css for global consistency */
     
     /* Page styles */
     body {
@@ -216,57 +124,20 @@
         font-size: 14px;
         padding: 80px 16px 16px;
       }
-      
+
       h1 {
         font-size: 2rem;
       }
-      
+
       h2 {
         font-size: 1.75rem;
       }
-      
+
       details {
         padding: 12px;
-      }
-      
-      .navbar {
-        padding: 0 16px;
-      }
-      
-      .navbar-brand {
-        font-size: 1.2rem;
-      }
-      
-      .navbar-links {
-        gap: 12px;
-      }
-      
-      .nav-link {
-        padding: 6px 12px;
-        font-size: 0.9rem;
       }
     }
     
     @media (max-width: 480px) {
-      .menu-toggle {
-        display: flex;
-      }
-      
-      .navbar-links {
-        position: fixed;
-        top: 60px;
-        left: 0;
-        right: 0;
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(10px);
-        flex-direction: column;
-        padding: 16px;
-        transform: translateY(-100%);
-        transition: transform 0.3s ease;
-        border-bottom: 1px solid #333;
-      }
-      
-      .navbar-links.active {
-        transform: translateY(0);
-      }
+      /* navbar responsive rules are in /navbar.css */
     }
