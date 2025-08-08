@@ -96,15 +96,14 @@
     setStatus('Searching…');
     try {
       const url = new URL(nominatimBase);
-      url.searchParams.set('format', 'json');
+      // Use jsonv2 and include a contact email per Nominatim usage policy
+      url.searchParams.set('format', 'jsonv2');
       url.searchParams.set('limit', '5');
       url.searchParams.set('addressdetails', '1');
       url.searchParams.set('q', query);
-      const res = await fetch(url.toString(), {
-        headers: {
-          'Accept-Language': navigator.language || 'zh-CN'
-        },
-      });
+      url.searchParams.set('email', 'support@wplace.wiki');
+      // Avoid custom headers to prevent CORS preflight issues
+      const res = await fetch(url.toString());
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const data = await res.json();
       renderResults(data);
