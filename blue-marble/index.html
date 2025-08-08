@@ -290,6 +290,7 @@
         const res = await fetch(url, { cache: 'no-store' });
         const html = await res.text();
         container.innerHTML = html;
+        console.log('🧩 Injected fragment into', containerSelector, 'from', url);
       } catch (e) {
         console.error('Failed to inject fragment', url, e);
       }
@@ -308,7 +309,7 @@
     // Expose translations to the LanguageSwitcher
     window.translations = window.translations || translations;
   </script>
-  <script src="./lang-switcher.js?v=2"></script>
+  <script src="./lang-switcher.js?v=3"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
         const menuToggle = document.querySelector('.menu-toggle');
