@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WPLACE Lat/Long Locator & Map Link Generator | City to Coordinates</title>
+    <meta name="description" content="Enter a city/place to get latitude/longitude and generate a shareable wplace.live map link with zoom. Fast online geocoding and map redirect." />
+    <meta name="keywords" content="wplace, lat long finder, geocode online, coordinate lookup, map link generator, locator, map redirect" />
+    <meta property="og:title" content="WPLACE Lat/Long Locator & Map Link Generator" />
+    <meta property="og:description" content="Enter a city to get coordinates and generate a wplace.live map link with zoom." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="canonical" href="https://www.wplace.wiki/geocode.html" />
+    <link rel="stylesheet" href="/main.css" />
+    <link rel="stylesheet" href="/navbar.css" />
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+      defer
+    ></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "WPLACE Lat/Long Locator & Map Link Generator",
+        "url": "https://www.wplace.wiki/geocode.html",
+        "applicationCategory": "UtilitiesApplication",
+        "description": "Enter a city to get coordinates and generate a wplace.live map link with zoom.",
+        "operatingSystem": "All"
+      }
+    </script>
+  </head>
+  <body>
+    <div id="navbar-container"></div>
+
+    <main style="max-width: 1000px; margin: 80px auto 24px; padding: 0 16px;">
+      <h1 style="text-align: center; color: #fff; margin-bottom: 16px;">WPLACE Lat/Long Locator & WPLACE Map Link Generator</h1>
+      <p style="text-align: center; color: #ccc; margin-bottom: 24px;">Enter a city or place, select a result, then get a shareable <code>wplace.live</code> map link.</p>
+
+      <section style="display: grid; grid-template-columns: 1fr; gap: 16px;">
+        <div>
+          <label for="q" style="display:block; color:#ccc; margin-bottom:8px;">City/Place</label>
+          <input id="q" type="text" placeholder="e.g., Beijing Chaoyang / Paris / Tokyo"
+                 style="width:100%; padding:12px 14px; border-radius:8px; border:1px solid #333; background:#111; color:#fff;" />
+        </div>
+
+        <div style="display:flex; gap:12px; align-items:center; flex-wrap: wrap;">
+          <button id="searchBtn" class="button">Find Coordinates</button>
+          <label style="color:#ccc;">Zoom:
+            <input id="zoomInput" type="number" min="1" max="19" step="1" value="13"
+                   style="width:80px; padding:8px 10px; border-radius:8px; border:1px solid #333; background:#111; color:#fff; margin-left:6px;" />
+          </label>
+          <a id="wplaceLink" href="https://wplace.live/" target="_blank" rel="noopener" class="button">Jump to wplace.live</a>
+          <span id="status" style="color:#999;"></span>
+        </div>
+
+        <div id="results" style="background:#0d0d0d; border:1px solid #222; border-radius:10px; padding:12px;
+             max-height:220px; overflow:auto;"></div>
+
+        <div id="map" style="height: 420px; border-radius: 10px; overflow: hidden; border: 1px solid #222;"></div>
+
+        <p style="color:#777; font-size: 0.9rem;">Data source: OpenStreetMap Nominatim. Please follow the usage policy and keep attribution.</p>
+      </section>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script>
+      async function injectFragment(containerSelector, url) {
+        const container = document.querySelector(containerSelector);
+        if (!container) return;
+        try {
+          const res = await fetch(url, { cache: 'no-store' });
+          const html = await res.text();
+          container.innerHTML = html;
+        } catch (e) {
+          console.error('Failed to inject fragment', url, e);
+        }
+      }
+      document.addEventListener('DOMContentLoaded', async () => {
+        await injectFragment('#navbar-container', '/components/navbar.html');
+        if (window.initNavbarInteractions) window.initNavbarInteractions();
+        await injectFragment('#footer-container', '/components/footer.html');
+      });
+    </script>
+    <script src="/navbar.js"></script>
+    <script src="/geocode.js" defer></script>
+  </body>
+</html>
+
