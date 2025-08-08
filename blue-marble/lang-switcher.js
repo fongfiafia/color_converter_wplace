@@ -82,47 +82,26 @@ class LanguageSwitcher {
     console.log('🌐 LanguageSwitcher: Setting up language selector...');
     const select = document.getElementById('lang-select');
     if (!select) {
-      console.warn('🌐 LanguageSwitcher: Language selector not found. Will observe DOM for injection...');
-      const observer = new MutationObserver(() => {
-        const sel = document.getElementById('lang-select');
-        if (sel) {
-          console.log('🌐 LanguageSwitcher: Language selector appeared after injection. Attaching now.');
-          observer.disconnect();
-          this.attachSelector(sel);
-          // Re-apply in case user changed URL/localStorage meanwhile
-          this.translatePage();
-          this.updateMetaTags();
-          this.updateURL();
-        }
-      });
-      observer.observe(document.body, { childList: true, subtree: true });
+      console.error('🌐 LanguageSwitcher: Language selector not found!');
       return;
     }
 
-    this.attachSelector(select);
-  }
-
-  attachSelector(select) {
     console.log('🌐 LanguageSwitcher: Language selector found:', select);
-    const optionValues = Array.from(select.options).map(o => o.value);
-    console.log('🌐 LanguageSwitcher: Selector options:', optionValues);
-
+    
     // Set current language as selected
     select.value = this.currentLang;
     console.log('🌐 LanguageSwitcher: Set selector value to:', this.currentLang);
 
     // Add event listener
     select.addEventListener('change', (e) => {
-      const chosen = e.target.value;
-      console.log('🌐 LanguageSwitcher: Language changed to:', chosen);
-      this.switchLanguage(chosen);
+      console.log('🌐 LanguageSwitcher: Language changed to:', e.target.value);
+      this.switchLanguage(e.target.value);
     });
   }
 
   switchLanguage(lang) {
     // If unsupported (e.g., user selected a language not available on this page), fallback to English
     if (!this.isValidLanguage(lang)) {
-      console.warn('🌐 LanguageSwitcher: Unsupported language selected:', lang, '→ falling back to en. Supported:', Object.keys(this.translations));
       lang = 'en';
     }
 
@@ -139,29 +118,13 @@ class LanguageSwitcher {
 
   translatePage() {
     const t = this.translations[this.currentLang];
-    if (!t) {
-      console.warn('🌐 LanguageSwitcher: No translations found for', this.currentLang, '— page will remain in default language.');
-      return;
-    }
-
-    // Set <html lang="..."> for accessibility/SEO
-    try {
-      document.documentElement.setAttribute('lang', this.currentLang);
-    } catch (e) {
-      console.debug('🌐 LanguageSwitcher: Unable to set <html lang> attribute:', e);
-    }
-
-    let updatedTextCount = 0;
-    let updatedHtmlCount = 0;
+    if (!t) return;
 
     // Update all elements with data-i18n attribute
     document.querySelectorAll('[data-i18n]').forEach(element => {
       const key = element.getAttribute('data-i18n');
       if (t[key]) {
         element.textContent = t[key];
-        updatedTextCount += 1;
-      } else {
-        console.debug('🌐 LanguageSwitcher: Missing translation key (text):', key, 'for lang:', this.currentLang);
       }
     });
 
@@ -170,16 +133,7 @@ class LanguageSwitcher {
       const key = element.getAttribute('data-i18n-html');
       if (t[key]) {
         element.innerHTML = t[key];
-        updatedHtmlCount += 1;
-      } else {
-        console.debug('🌐 LanguageSwitcher: Missing translation key (html):', key, 'for lang:', this.currentLang);
       }
-    });
-
-    console.log('🌐 LanguageSwitcher: Applied translations:', {
-      lang: this.currentLang,
-      updatedTextNodes: updatedTextCount,
-      updatedHtmlNodes: updatedHtmlCount
     });
   }
 
@@ -231,7 +185,6 @@ class LanguageSwitcher {
     const url = new URL(window.location);
     url.searchParams.set('lang', this.currentLang);
     window.history.replaceState({}, '', url);
-    console.log('🌐 LanguageSwitcher: Updated URL with lang param:', this.currentLang, String(url));
   }
 }
 
