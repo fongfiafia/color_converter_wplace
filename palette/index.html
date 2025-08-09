@@ -132,10 +132,10 @@
   <body>
     <div id="navbar-container"></div>
     <main>
-      <h1 class="palette-header" style="margin-bottom: 8px">
+      <h1 class="palette-header" style="margin-bottom: 8px" data-i18n="title">
         WPLACE COLORS PALETTE
       </h1>
-      <p class="palette-sub">
+      <p class="palette-sub" data-i18n="subtitle">
         This is the full palette referenced by the Wplace project for
         wplace.live. Browse each color and copy its hex for easy use in your
         pixel workflows.
@@ -143,28 +143,34 @@
 
       <div class="meta">
         <div class="meta-item">
-          <strong>Number of colors:</strong> <span id="count"></span>
+          <strong data-i18n="numColors">Number of colors:</strong>
+          <span id="count"></span>
         </div>
         <div class="meta-item">
-          <strong>Copied:123398</strong> <span id="downloads"></span>
+          <strong data-i18n="copied">Copied:</strong>
+          <span id="downloads"></span>
         </div>
         <div class="meta-item">
-          <strong>Likes:987765</strong> <span id="likes"></span>
+          <strong data-i18n="likes">Likes:</strong> <span id="likes"></span>
         </div>
       </div>
 
       <div class="tags" aria-label="tags">
-        <span class="tag">wplace.live</span>
-        <span class="tag">free colors</span>
-        <span class="tag">paid colors</span>
+        <span class="tag" data-i18n="tagWplace">wplace.live</span>
+        <span class="tag" data-i18n="tagFree">free colors</span>
+        <span class="tag" data-i18n="tagPaid">paid colors</span>
       </div>
 
       <section>
-        <h2 style="color: #fff; margin: 18px 0 10px">Free Colors Palette</h2>
+        <h2 style="color: #fff; margin: 18px 0 10px" data-i18n="freeTitle">
+          Free Colors Palette
+        </h2>
         <div id="grid-free" class="grid" aria-live="polite"></div>
       </section>
       <section style="margin-top: 18px">
-        <h2 style="color: #fff; margin: 0 0 10px">Paid Colors Palette</h2>
+        <h2 style="color: #fff; margin: 0 0 10px" data-i18n="paidTitle">
+          Paid Colors Palette
+        </h2>
         <div id="grid-paid" class="grid" aria-live="polite"></div>
       </section>
     </main>
@@ -276,14 +282,16 @@
             const copy = document.createElement("button");
             copy.className = "copy";
             copy.type = "button";
-            copy.textContent = "Copy";
+            copy.textContent =
+              (window.paletteI18n && window.paletteI18n.copy) || "Copy";
             copy.style.width = "60px";
             copy.style.borderRadius = "10px";
             copy.style.marginLeft = "10px";
             copy.addEventListener("click", async () => {
               try {
                 await navigator.clipboard.writeText(hex.toLowerCase());
-                copy.textContent = "Copied";
+                copy.textContent =
+                  (window.paletteI18n && window.paletteI18n.copied) || "Copied";
                 setTimeout(() => (copy.textContent = "Copy"), 1200);
               } catch (_) {}
             });
@@ -297,6 +305,67 @@
         renderInto(gridFree, freeColors);
         renderInto(gridPaid, paidColors);
       });
+    </script>
+    <script>
+      // Simple i18n for this page (en/pt)
+      (function () {
+        const T = {
+          en: {
+            title: "WPLACE COLORS PALETTE",
+            subtitle:
+              "This is the full palette referenced by the Wplace project for wplace.live. Browse each color and copy its hex for easy use in your pixel workflows.",
+            numColors: "Number of colors:",
+            copied: "Copied:",
+            likes: "Likes:",
+            tagWplace: "wplace.live",
+            tagFree: "free colors",
+            tagPaid: "paid colors",
+            freeTitle: "Free Colors Palette",
+            paidTitle: "Paid Colors Palette",
+            copy: "Copy",
+            copiedBtn: "Copied",
+          },
+          pt: {
+            title: "PALETA DE CORES WPLACE",
+            subtitle:
+              "Esta é a paleta completa usada pelo projeto Wplace para o wplace.live. Explore cada cor e copie o hex para facilitar o seu fluxo de trabalho.",
+            numColors: "Número de cores:",
+            copied: "Copiados:",
+            likes: "Curtidas:",
+            tagWplace: "wplace.live",
+            tagFree: "cores gratuitas",
+            tagPaid: "cores pagas",
+            freeTitle: "Paleta de Cores Gratuitas",
+            paidTitle: "Paleta de Cores Pagas",
+            copy: "Copiar",
+            copiedBtn: "Copiado",
+          },
+        };
+        function apply(lang) {
+          const L = T[lang] || T.en;
+          const q = (s) => document.querySelector(s);
+          const set = (s, t) => {
+            const el = q(s);
+            if (el) el.textContent = t;
+          };
+          set('[data-i18n="title"]', L.title);
+          set('[data-i18n="subtitle"]', L.subtitle);
+          set('[data-i18n="numColors"]', L.numColors);
+          set('[data-i18n="copied"]', L.copied);
+          set('[data-i18n="likes"]', L.likes);
+          set('[data-i18n="tagWplace"]', L.tagWplace);
+          set('[data-i18n="tagFree"]', L.tagFree);
+          set('[data-i18n="tagPaid"]', L.tagPaid);
+          set('[data-i18n="freeTitle"]', L.freeTitle);
+          set('[data-i18n="paidTitle"]', L.paidTitle);
+          window.paletteI18n = { copy: L.copy, copied: L.copiedBtn };
+        }
+        const saved = localStorage.getItem("lang") || "en";
+        apply(saved);
+        window.addEventListener("wplace:langchange", (e) =>
+          apply((e.detail && e.detail.lang) || "en")
+        );
+      })();
     </script>
     <script src="/navbar.js"></script>
   </body>
