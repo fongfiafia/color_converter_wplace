@@ -160,11 +160,11 @@
       </div>
 
       <section>
-        <h2 style="color: #fff; margin: 18px 0 10px">Free Colors</h2>
+        <h2 style="color: #fff; margin: 18px 0 10px">Free Colors Palette</h2>
         <div id="grid-free" class="grid" aria-live="polite"></div>
       </section>
       <section style="margin-top: 18px">
-        <h2 style="color: #fff; margin: 0 0 10px">Paid Colors (2000💧 each)</h2>
+        <h2 style="color: #fff; margin: 0 0 10px">Paid Colors Palette</h2>
         <div id="grid-paid" class="grid" aria-live="polite"></div>
       </section>
     </main>
@@ -277,6 +277,9 @@
             copy.className = "copy";
             copy.type = "button";
             copy.textContent = "Copy";
+            copy.style.width = "60px";
+            copy.style.borderRadius = "10px";
+            copy.style.marginLeft = "10px";
             copy.addEventListener("click", async () => {
               try {
                 await navigator.clipboard.writeText(hex.toLowerCase());
