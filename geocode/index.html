@@ -53,6 +53,62 @@
         "operatingSystem": "All"
       }
     </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I find latitude and longitude for a city or place?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Enter a city or place, then click Find Coordinates (or press Enter). Select a result to center the WPLACE map and get a shareable wplace.live link for WPLACE."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I share a direct link to a search?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. After you search, the URL of this WPLACE page includes q (query) and zoom. Share the link and the WPLACE geocode page will auto-run that search; the wplace.live map link updates accordingly."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where do the results come from?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Search results are powered by OpenStreetMap's Nominatim service and displayed in the WPLACE interface. Please follow its usage policy and attribution requirements when using WPLACE and wplace.live links."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How accurate are the coordinates?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Accuracy depends on OpenStreetMap data and the type of place searched (country, city, address, POI). In WPLACE, choose the result that best matches your intent, then use the wplace.live link for the target location."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What zoom levels are supported?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The WPLACE map supports zoom levels 1–19. You can change zoom before or after selecting a result; the wplace.live WPLACE link updates automatically."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this page store my searches?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "This WPLACE page does not store your queries on a server. Your chosen language for WPLACE is saved locally in your browser to improve your wplace.live experience."
+            }
+          }
+        ]
+      }
+    </script>
     <style>
       /* Geocode page responsive tweaks */
       @media (max-width: 1024px) {
@@ -209,6 +265,82 @@
           Data source: OpenStreetMap Nominatim. Please follow the usage policy
           and keep attribution.
         </p>
+        <section id="faq" style="margin-top: 28px">
+          <h2 id="faq-title" style="color: #fff; margin-bottom: 12px">FAQ</h2>
+          <div
+            style="
+              background: #0d0d0d;
+              border: 1px solid #222;
+              border-radius: 10px;
+              padding: 16px;
+            "
+          >
+            <details open>
+              <summary id="faq-q1" style="color: #eaeaea; cursor: pointer">
+                How do I find latitude and longitude for a city or place in
+                WPLACE?
+              </summary>
+              <div id="faq-a1" style="color: #bbb; margin-top: 8px">
+                Enter a city or place in the input, click Find Coordinates (or
+                press Enter). Select any result to center the WPLACE map and get
+                a shareable <code>wplace.live</code> WPLACE link.
+              </div>
+            </details>
+            <details open>
+              <summary id="faq-q2" style="color: #eaeaea; cursor: pointer">
+                Can I share a direct link to a search?
+              </summary>
+              <div id="faq-a2" style="color: #bbb; margin-top: 8px">
+                Yes. After you search, this WPLACE page URL includes
+                <code>q</code> (query) and <code>zoom</code>. Share the WPLACE
+                URL and the page will auto-run that search on open; the
+                <code>wplace.live</code> link will be ready.
+              </div>
+            </details>
+            <details open>
+              <summary id="faq-q3" style="color: #eaeaea; cursor: pointer">
+                Where do the results on WPLACE come from?
+              </summary>
+              <div id="faq-a3" style="color: #bbb; margin-top: 8px">
+                Results are powered by OpenStreetMap's Nominatim service and
+                shown in WPLACE. Please follow its usage policy and keep
+                attribution when using WPLACE and sharing
+                <code>wplace.live</code> links.
+              </div>
+            </details>
+            <details open>
+              <summary id="faq-q4" style="color: #eaeaea; cursor: pointer">
+                How accurate are the coordinates in WPLACE?
+              </summary>
+              <div id="faq-a4" style="color: #bbb; margin-top: 8px">
+                Accuracy depends on the underlying OpenStreetMap data and the
+                type of place searched (country, city, address, POI). In WPLACE,
+                choose the result that best matches your intent, then copy the
+                <code>wplace.live</code> link.
+              </div>
+            </details>
+            <details open>
+              <summary id="faq-q5" style="color: #eaeaea; cursor: pointer">
+                What zoom levels are supported in WPLACE?
+              </summary>
+              <div id="faq-a5" style="color: #bbb; margin-top: 8px">
+                The WPLACE map supports zoom levels 1–19. You can change zoom
+                any time; the <code>wplace.live</code> WPLACE link updates
+                automatically.
+              </div>
+            </details>
+            <details open>
+              <summary id="faq-q6" style="color: #eaeaea; cursor: pointer">
+                Does this WPLACE page store my searches?
+              </summary>
+              <div id="faq-a6" style="color: #bbb; margin-top: 8px">
+                We do not store your queries on a server. Your selected WPLACE
+                language preference is saved locally in your browser to improve
+                your wplace.live experience.
+              </div>
+            </details>
+          </div>
+        </section>
       </section>
     </main>
 
@@ -292,223 +424,11 @@
       });
     </script>
     <script src="/navbar.js"></script>
+    <script src="/geocode/translation.js"></script>
     <script>
       // Geocode page translations
       (function () {
-        const T = {
-          en: {
-            title: "WPLACE Lat/Long Locator & WPLACE Map Link Generator",
-            subtitle:
-              "Enter a city or place, select a result, then get a shareable wplace.live map link.",
-            cityLabel: "City/Place",
-            placeholder: "e.g., Brazil / Germany / New York",
-            findBtn: "Find Coordinates",
-            zoom: "Zoom:",
-            jump: "Jump to wplace.live",
-            source:
-              "Data source: OpenStreetMap Nominatim. Please follow the usage policy and keep attribution.",
-            searching: "Searching…",
-            noResults: "No results found",
-            searchFailed: "Search failed, please try again later",
-          },
-          de: {
-            title:
-              "WPLACE Breiten- / Längengrad-Suche & WPLACE Kartenlink-Generator",
-            subtitle:
-              "Gib eine Stadt oder einen Ort ein, wähle ein Ergebnis aus und erhalte einen teilbaren wplace.live Kartenlink.",
-            cityLabel: "Stadt/Ort",
-            placeholder: "z.B. Brasilien / Deutschland / New York",
-            findBtn: "Koordinaten suchen",
-            zoom: "Zoom:",
-            jump: "Zu wplace.live springen",
-            source:
-              "Datenquelle: OpenStreetMap Nominatim. Bitte befolge die Nutzungsbedingungen und füge die Urheberangabe bei.",
-            searching: "Suche läuft…",
-            noResults: "Keine Ergebnisse gefunden",
-            searchFailed:
-              "Suche fehlgeschlagen. Bitte versuche es später noch einmal.",
-          },
-          pt: {
-            title: "Localizador Lat/Long & Gerador de Link do Mapa do WPLACE",
-            subtitle:
-              "Digite uma cidade ou local, selecione um resultado e gere um link compartilhável do wplace.live.",
-            cityLabel: "Cidade/Local",
-            placeholder: "ex.: Brasil / Alemanha / Nova Iorque",
-            findBtn: "Encontrar Coordenadas",
-            zoom: "Zoom:",
-            jump: "Ir para wplace.live",
-            source:
-              "Fonte de dados: OpenStreetMap Nominatim. Siga a política de uso e mantenha a atribuição.",
-            searching: "Pesquisando…",
-            noResults: "Nenhum resultado encontrado",
-            searchFailed: "Pesquisa falhou, tente novamente mais tarde",
-          },
-          es: {
-            title:
-              "WPLACE Buscador de Latitud/Longitud y Generador de Enlaces de Mapa WPLACE",
-            subtitle:
-              "Introduce una ciudad o lugar, selecciona un resultado y obtén un enlace de mapa wplace.live para compartir.",
-            cityLabel: "Ciudad/Lugar",
-            placeholder: "ej. Brasil / Alemania / Nueva York",
-            findBtn: "Buscar Coordenadas",
-            zoom: "Zoom:",
-            jump: "Ir a wplace.live",
-            source:
-              "Fuente de datos: OpenStreetMap Nominatim. Por favor, sigue la política de uso y mantén la atribución.",
-            searching: "Buscando…",
-            noResults: "No se encontraron resultados",
-            searchFailed:
-              "La búsqueda falló, por favor intenta de nuevo más tarde.",
-          },
-          fr: {
-            title:
-              "WPLACE Localisateur Lat/Long & Générateur de Lien de Carte WPLACE",
-            subtitle:
-              "Entrez une ville ou un lieu, sélectionnez un résultat, puis obtenez un lien de carte wplace.live partageable.",
-            cityLabel: "Ville/Lieu",
-            placeholder: "ex. Brésil / Allemagne / New York",
-            findBtn: "Trouver les Coordonnées",
-            zoom: "Zoom:",
-            jump: "Aller à wplace.live",
-            source:
-              "Source des données: OpenStreetMap Nominatim. Veuillez suivre la politique d'utilisation et conserver l'attribution.",
-            searching: "Recherche en cours…",
-            noResults: "Aucun résultat trouvé",
-            searchFailed:
-              "La recherche a échoué, veuillez réessayer plus tard.",
-          },
-          uk: {
-            title:
-              "WPLACE Локатор Широти/Довготи та Генератор Посилань на Карту WPLACE",
-            subtitle:
-              "Введіть місто або місце, виберіть результат, а потім отримайте посилання на карту wplace.live, яким можна поділитися.",
-            cityLabel: "Місто/Місце",
-            placeholder: "напр. Бразилія / Німеччина / Нью-Йорк",
-            findBtn: "Знайти Координати",
-            zoom: "Масштаб:",
-            jump: "Перейти до wplace.live",
-            source:
-              "Джерело даних: OpenStreetMap Nominatim. Будь ласка, дотримуйтесь політики використання та зберігайте атрибуцію.",
-            searching: "Пошук…",
-            noResults: "Результатів не знайдено",
-            searchFailed: "Пошук не вдався, спробуйте ще раз пізніше.",
-          },
-          vi: {
-            title:
-              "Công cụ định vị kinh/vĩ độ WPLACE & Trình tạo liên kết bản đồ WPLACE",
-            subtitle:
-              "Nhập một thành phố hoặc địa điểm, chọn một kết quả, sau đó nhận một liên kết bản đồ wplace.live có thể chia sẻ.",
-            cityLabel: "Thành phố/Địa điểm",
-            placeholder: "ví dụ: Brazil / Đức / New York",
-            findBtn: "Tìm Tọa độ",
-            zoom: "Thu phóng:",
-            jump: "Chuyển đến wplace.live",
-            source:
-              "Nguồn dữ liệu: OpenStreetMap Nominatim. Vui lòng tuân thủ chính sách sử dụng và giữ nguyên nguồn gốc.",
-            searching: "Đang tìm kiếm…",
-            noResults: "Không tìm thấy kết quả",
-            searchFailed: "Tìm kiếm thất bại, vui lòng thử lại sau.",
-          },
-          pl: {
-            title:
-              "Lokalizator szerokości/długości geograficznej WPLACE & Generator linków do mapy WPLACE",
-            subtitle:
-              "Wprowadź miasto lub miejsce, wybierz wynik, a następnie uzyskaj link do mapy wplace.live, który można udostępnić.",
-            cityLabel: "Miasto/Miejsce",
-            placeholder: "np. Brazylia / Niemcy / Nowy Jork",
-            findBtn: "Znajdź Współrzędne",
-            zoom: "Zoom:",
-            jump: "Przejdź do wplace.live",
-            source:
-              "Źródło danych: OpenStreetMap Nominatim. Prosimy o przestrzeganie zasad użytkowania i zachowanie atrybucji.",
-            searching: "Szukanie…",
-            noResults: "Nie znaleziono wyników",
-            searchFailed:
-              "Wyszukiwanie nie powiodło się, spróbuj ponownie później.",
-          },
-          ja: {
-            title:
-              "WPLACE 緯度 / 経度ロケーター＆WPLACE マップリンクジェネレーター",
-            subtitle:
-              "都市や場所を入力し、結果を選択すると、共有可能な wplace.live マップリンクが生成されます。",
-            cityLabel: "都市 / 場所",
-            placeholder: "例：ブラジル / ドイツ / ニューヨーク",
-            findBtn: "座標を探す",
-            zoom: "ズーム:",
-            jump: "wplace.live へ移動",
-            source:
-              "データソース: OpenStreetMap Nominatim。使用ポリシーに従い、帰属表示を維持してください。",
-            searching: "検索中…",
-            noResults: "結果が見つかりませんでした",
-            searchFailed: "検索に失敗しました。後でもう一度お試しください。",
-          },
-          de_CH: {
-            title:
-              "WPLACE Breiten- / Längengrad-Suche & WPLACE Kartenlink-Generator",
-            subtitle:
-              "Gib eine Stadt oder einen Ort ein, wähle ein Ergebnis aus und erhalte einen teilbaren wplace.live Kartenlink.",
-            cityLabel: "Stadt/Ort",
-            placeholder: "z.B. Brasilien / Deutschland / New York",
-            findBtn: "Koordinaten suchen",
-            zoom: "Zoom:",
-            jump: "Zu wplace.live springen",
-            source:
-              "Datenquelle: OpenStreetMap Nominatim. Bitte befolge die Nutzungsbedingungen und füge die Urheberangabe bei.",
-            searching: "Suche läuft…",
-            noResults: "Keine Ergebnisse gefunden",
-            searchFailed:
-              "Suche fehlgeschlagen. Bitte versuche es später noch einmal.",
-          },
-          nl: {
-            title: "WPLACE Lat/Lon Locator & WPLACE Kaartlinkgenerator",
-            subtitle:
-              "Voer een stad of plaats in, selecteer een resultaat en krijg een deelbare wplace.live kaartlink.",
-            cityLabel: "Stad/Plaats",
-            placeholder: "bijv. Brazilië / Duitsland / New York",
-            findBtn: "Vind Coördinaten",
-            zoom: "Zoom:",
-            jump: "Ga naar wplace.live",
-            source:
-              "Gegevensbron: OpenStreetMap Nominatim. Volg a.u.b. het gebruiksbeleid en behoud de naamsvermelding.",
-            searching: "Bezig met zoeken…",
-            noResults: "Geen resultaten gevonden",
-            searchFailed: "Zoeken mislukt, probeer het later opnieuw.",
-          },
-          ru: {
-            title:
-              "WPLACE Локатор Широты/Долготы и Генератор Ссылок на Карту WPLACE",
-            subtitle:
-              "Введите город или место, выберите результат, затем получите ссылку на карту wplace.live, которой можно поделиться.",
-            cityLabel: "Город/Место",
-            placeholder: "напр. Бразилия / Германия / Нью-Йорк",
-            findBtn: "Найти Координаты",
-            zoom: "Масштаб:",
-            jump: "Перейти на wplace.live",
-            source:
-              "Источник данных: OpenStreetMap Nominatim. Пожалуйста, следуйте политике использования и сохраняйте атрибуцию.",
-            searching: "Идет поиск…",
-            noResults: "Результатов не найдено",
-            searchFailed:
-              "Поиск не удался, пожалуйста, попробуйте еще раз позже.",
-          },
-          tr: {
-            title:
-              "WPLACE Enlem/Boylam Konumlandırıcı & WPLACE Harita Bağlantı Oluşturucu",
-            subtitle:
-              "Bir şehir veya yer girin, bir sonuç seçin ve ardından paylaşılabilir bir wplace.live harita bağlantısı alın.",
-            cityLabel: "Şehir/Yer",
-            placeholder: "örn. Brezilya / Almanya / New York",
-            findBtn: "Koordinatları Bul",
-            zoom: "Yakınlaştır:",
-            jump: "wplace.live'a git",
-            source:
-              "Veri kaynağı: OpenStreetMap Nominatim. Lütfen kullanım politikasını takip edin ve atıfı koruyun.",
-            searching: "Aranıyor…",
-            noResults: "Sonuç bulunamadı",
-            searchFailed:
-              "Arama başarısız oldu, lütfen daha sonra tekrar deneyin.",
-          },
-        };
+        const T = translationsGeocode;
         window.geocodeTranslations = T;
         function apply(lang) {
           const L = T[lang] || T.en;
@@ -529,6 +449,27 @@
           if (jump) jump.textContent = L.jump;
           const source = qs("#data-source");
           if (source) source.textContent = L.source;
+          // FAQ translations
+          const faqTitle = qs("#faq-title");
+          if (faqTitle && L.faqTitle) faqTitle.textContent = L.faqTitle;
+          const setText = (id, text) => {
+            const el = qs(id);
+            if (el && typeof text === "string") el.textContent = text;
+          };
+          if (L.faq) {
+            setText("#faq-q1", L.faq.q1);
+            setText("#faq-a1", L.faq.a1);
+            setText("#faq-q2", L.faq.q2);
+            setText("#faq-a2", L.faq.a2);
+            setText("#faq-q3", L.faq.q3);
+            setText("#faq-a3", L.faq.a3);
+            setText("#faq-q4", L.faq.q4);
+            setText("#faq-a4", L.faq.a4);
+            setText("#faq-q5", L.faq.q5);
+            setText("#faq-a5", L.faq.a5);
+            setText("#faq-q6", L.faq.q6);
+            setText("#faq-a6", L.faq.a6);
+          }
         }
         window.applyGeocodeTranslations = apply;
         document.addEventListener("DOMContentLoaded", () => {
