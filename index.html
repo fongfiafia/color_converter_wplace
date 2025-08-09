@@ -1,266 +1,1002 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta property="og:title" content="Wplace Tool Help Paint Easily" />
+    <meta
+      property="og:description"
+      content="Wplace pixel art converter & generator & maker & extension & script. Transform your images into perfect pixel"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://wplace.wiki" />
+    <meta name="theme-color" content="#D60270" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Wplace Pixel Art Tool - The ultimate pixel art converter for Wplace. Create pixel-perfect art with precise color adjustments and professional pixel art tools."
+    />
+    <meta
+      name="keywords"
+      content="wplace live, wplace tool, wplace extension, wplace script, wplace pixel, blue marble, wplace pixel maker, wplace pixel converter, wplace colors palette"
+    />
+    <meta name="author" content="Wplace" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="canonical" href="https://www.wplace.wiki" />
+    <title>Wplace Pixel Art Tool | Best Pixel Art Converter for Wplace</title>
+    <link rel="stylesheet" href="./main.css" />
+    <link rel="stylesheet" href="/navbar.css?v=4" />
+    <link rel="shortcut icon" href="./favicon.png" type="image/x-icon" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta property="og:title" content="Wplace Tool Help Paint Easily">
-  <meta property="og:description" content="Wplace pixel art converter & generator & maker & extension & script. Transform your images into perfect pixel">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://wplace.wiki">
-  <meta name="theme-color" content="#D60270">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Wplace Pixel Art Tool - The ultimate pixel art converter for Wplace. Create pixel-perfect art with precise color adjustments and professional pixel art tools.">
-  <meta name="keywords" content="wplace live, wplace tool, wplace extension, wplace script, wplace pixel, blue marble, wplace pixel maker, wplace pixel converter, wplace colors palette">
-  <meta name="author" content="Wplace">
-  <meta name="theme-color" content="#000000">
-  <link rel="canonical" href="https://www.wplace.wiki">
-  <title>Wplace Pixel Art Tool | Best Pixel Art Converter for Wplace</title>
-  <link rel="stylesheet" href="./main.css">
-  <link rel="stylesheet" href="/navbar.css?v=4">
-  <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
-</head>
+  <body>
+    <div id="navbar-container"></div>
 
-<body>
-<div id="navbar-container"></div>
+    <header>
+      <h1
+        class="title"
+        style="
+          text-align: center;
+          font-size: 3rem;
+          font-weight: 700;
+          letter-spacing: 0;
+          margin-top: 40px;
+          margin-bottom: 24px;
+          color: #ffffff;
+        "
+        data-i18n="title"
+      >
+        Wplace Pixel Tool
+      </h1>
+      <p
+        class="subtitle"
+        style="
+          text-align: center;
+          font-size: 1.2rem;
+          font-weight: 500;
+          letter-spacing: 0;
+          margin-bottom: 16px;
+          color: #ffffff;
+        "
+        data-i18n="subtitle"
+      >
+        Create Perfect Pixel Art for Wplace
+      </p>
+      <p
+        class="description"
+        style="
+          text-align: center;
+          max-width: 600px;
+          margin: 0 auto 32px;
+          color: #cccccc;
+        "
+        data-i18n="description"
+      >
+        Transform your images into pixel-perfect art with Wplace's professional
+        pixel art converter. Precise color adjustments and powerful pixel tools.
+      </p>
+    </header>
 
+    <input type="file" id="upload" accept="image/*" /><br />
 
-  <header>
-    <h1 class="title" style="text-align: center; font-size: 3rem; font-weight: 700; letter-spacing: 0; margin-top: 40px; margin-bottom: 24px; color: #ffffff;" data-i18n="title">Wplace Pixel Tool</h1>
-    <p class="subtitle" style="text-align: center; font-size: 1.2rem; font-weight: 500; letter-spacing: 0; margin-bottom: 16px; color: #ffffff;" data-i18n="subtitle">Create Perfect Pixel Art for Wplace</p>
-    <p class="description" style="text-align: center; max-width: 600px; margin: 0 auto 32px; color: #cccccc;" data-i18n="description">Transform your images into pixel-perfect art with Wplace's professional pixel art converter. Precise color adjustments and powerful pixel tools.</p>
-  </header>
+    <canvas id="canvas"></canvas><br />
 
-  <input type="file" id="upload" accept="image/*"><br>
+    <p class="image-info" id="width"></p>
+    <p class="image-info" id="height"></p>
+    <p class="image-info" id="area"></p>
 
-  <canvas id="canvas"></canvas><br>
+    <div class="scroll-bar">
+      <label for="scaleRange" data-i18n="scale">Scale: </label>
+      <input
+        type="range"
+        id="scaleRange"
+        min="0.01"
+        max="5"
+        step="0.01"
+        value="1"
+      />
+      <span id="scaleValue">1.00x</span>
+    </div>
+    <br />
 
-  <p class="image-info" id="width"></p>
-  <p class="image-info" id="height"></p>
-  <p class="image-info" id="area"></p>
+    <div class="scroll-bar">
+      <label for="zoomRange" data-i18n="zoom">Zoom: </label>
+      <input
+        type="range"
+        id="zoomRange"
+        min="0.01"
+        max="5"
+        step="0.01"
+        value="1"
+      />
+      <span id="zoomValue">1.00x</span>
+    </div>
+    <br />
 
-  <div class="scroll-bar">
-    <label for="scaleRange" data-i18n="scale">Scale: </label>
-    <input type="range" id="scaleRange" min="0.01" max="5" step="0.01" value="1">
-    <span id="scaleValue">1.00x</span>
-  </div><br>
+    <div>
+      <button
+        data-i18n="transparentButton"
+        data-i18n-title="transparentButtonTitle"
+        title="bla bal bla"
+        id="transparentButton"
+        class="toggle-color"
+        style="background: rgb(0, 0, 0); color: #fff"
+      >
+        Remove Semi-transparent Pixels
+      </button>
+    </div>
 
-  <div class="scroll-bar">
-    <label for="zoomRange" data-i18n="zoom">Zoom: </label>
-    <input type="range" id="zoomRange" min="0.01" max="5" step="0.01" value="1">
-    <span id="zoomValue">1.00x</span>
-  </div><br>
+    <div class="row">
+      <a id="download" class="button" href="#" data-i18n="download"
+        >Download Image</a
+      >
+      <a id="clipboard" class="button" data-i18n="clipboard"
+        >Copy to Clipboard</a
+      >
+      <a
+        class="button"
+        target="_blank"
+        href="https://wplace.live/"
+        data-i18n="goto"
+        >Go to Wplace</a
+      >
+    </div>
 
-  <div>
-    <button data-i18n="transparentButton" data-i18n-title="transparentButtonTitle" title="bla bal bla" id="transparentButton" class="toggle-color" style="background: rgb(0,0,0); color: #fff;">Remove Semi-transparent Pixels</button>
-  </div>
+    <h2 style="text-align: center">Wplace Color Palettes</h2>
+    <p data-i18n="freeColors">Free Colors:</p>
+    <button
+      class="toggle-color"
+      data-type="free"
+      style="background: rgb(0, 0, 0); color: #fff"
+      id="unselect-all-free"
+      data-i18n="allButtonfreeUnselect"
+    >
+      Unselect All Free Colors
+    </button>
+    <div id="colors">
+      <button
+        id="1"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(0, 0, 0); color: #fff"
+        title="Black: rgb(0, 0, 0)"
+      >
+        Black
+      </button>
+      <button
+        id="2"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(60, 60, 60); color: #fff"
+        title="Dark Gray: rgb(60, 60, 60)"
+      >
+        Dark Gray
+      </button>
+      <button
+        id="3"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(120, 120, 120)"
+        title="Gray: rgb(120, 120, 120)"
+      >
+        Gray
+      </button>
+      <button
+        id="4"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(210, 210, 210)"
+        title="Light Gray: rgb(210, 210, 210)"
+      >
+        Light Gray
+      </button>
+      <button
+        id="5"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(255, 255, 255)"
+        title="White: rgb(255, 255, 255)"
+      >
+        White
+      </button>
+      <button
+        id="6"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(96, 0, 24); color: #fff"
+        title="Deep Red: rgb(96, 0, 24)"
+      >
+        Deep Red
+      </button>
+      <button
+        id="7"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(237, 28, 36)"
+        title="Red: rgb(237, 28, 36)"
+      >
+        Red
+      </button>
+      <button
+        id="8"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(255, 127, 39)"
+        title="Orange: rgb(255, 127, 39)"
+      >
+        Orange
+      </button>
+      <button
+        id="9"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(246, 170, 9)"
+        title="Gold: rgb(246, 170, 9)"
+      >
+        Gold
+      </button>
+      <button
+        id="10"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(249, 221, 59)"
+        title="Yellow: rgb(249, 221, 59)"
+      >
+        Yellow
+      </button>
+      <button
+        id="11"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(255, 250, 188)"
+        title="Light Yellow: rgb(255, 250, 188)"
+      >
+        Light Yellow
+      </button>
+      <button
+        id="12"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(14, 185, 104)"
+        title="Dark Green: rgb(14, 185, 104)"
+      >
+        Dark Green
+      </button>
+      <button
+        id="13"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(19, 230, 123)"
+        title="Green: rgb(19, 230, 123)"
+      >
+        Green
+      </button>
+      <button
+        id="14"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(135, 255, 94)"
+        title="Light Green: rgb(135, 255, 94)"
+      >
+        Light Green
+      </button>
+      <button
+        id="15"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(12, 129, 110)"
+        title="Dark Teal: rgb(12, 129, 110)"
+      >
+        Dark Teal
+      </button>
+      <button
+        id="16"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(16, 174, 166)"
+        title="Teal: rgb(16, 174, 166)"
+      >
+        Teal
+      </button>
+      <button
+        id="17"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(19, 225, 190)"
+        title="Light Teal: rgb(19, 225, 190)"
+      >
+        Light Teal
+      </button>
+      <button
+        id="18"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(96, 247, 242)"
+        title="Cyan: rgb(96, 247, 242)"
+      >
+        Cyan
+      </button>
+      <button
+        id="19"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(40, 80, 158); color: #fff"
+        title="Dark Blue: rgb(40, 80, 158)"
+      >
+        Dark Blue
+      </button>
+      <button
+        id="20"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(64, 147, 228)"
+        title="Blue: rgb(64, 147, 228)"
+      >
+        Blue
+      </button>
+      <button
+        id="21"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(107, 80, 246); color: #fff"
+        title="Indigo: rgb(107, 80, 246)"
+      >
+        Indigo
+      </button>
+      <button
+        id="22"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(153, 177, 251)"
+        title="Light Indigo: rgb(153, 177, 251)"
+      >
+        Light Indigo
+      </button>
+      <button
+        id="23"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(120, 12, 153); color: #fff"
+        title="Dark Purple: rgb(120, 12, 153)"
+      >
+        Dark Purple
+      </button>
+      <button
+        id="24"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(170, 56, 185); color: #fff"
+        title="Purple: rgb(170, 56, 185)"
+      >
+        Purple
+      </button>
+      <button
+        id="25"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(224, 159, 249)"
+        title="Light Purple: rgb(224, 159, 249)"
+      >
+        Light Purple
+      </button>
+      <button
+        id="26"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(203, 0, 122)"
+        title="Dark Pink: rgb(203, 0, 122)"
+      >
+        Dark Pink
+      </button>
+      <button
+        id="27"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(236, 31, 128)"
+        title="Pink: rgb(236, 31, 128)"
+      >
+        Pink
+      </button>
+      <button
+        id="28"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(243, 141, 169)"
+        title="Light Pink: rgb(243, 141, 169)"
+      >
+        Light Pink
+      </button>
+      <button
+        id="29"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(104, 70, 52); color: #fff"
+        title="Dark Brown: rgb(104, 70, 52)"
+      >
+        Dark Brown
+      </button>
+      <button
+        id="30"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(149, 104, 42)"
+        title="Brown: rgb(149, 104, 42)"
+      >
+        Brown
+      </button>
+      <button
+        id="31"
+        class="toggle-color active"
+        data-type="free"
+        style="background: rgb(248, 178, 119)"
+        title="Beige: rgb(248, 178, 119)"
+      >
+        Beige
+      </button>
+    </div>
 
-  <div class="row">
-    <a id="download" class="button" href="#" data-i18n="download">Download Image</a>
-    <a id="clipboard" class="button" data-i18n="clipboard">Copy to Clipboard</a>
-    <a class="button" target="_blank" href="https://wplace.live/" data-i18n="goto">Go to Wplace</a>
-  </div>
+    <p data-i18n="paidColors">Paid Colors (2000💧each):</p>
+    <button
+      class="toggle-color"
+      data-type="paid"
+      style="background: rgb(0, 0, 0); color: #fff"
+      id="select-all-paid"
+      data-i18n="allButtonpaidSelect"
+    >
+      Select All 💧Paid Colors
+    </button>
+    <div id="colors">
+      <button
+        id="33"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(170, 170, 170)"
+        title="Medium Gray: rgb(170, 170, 170)"
+      >
+        Medium Gray
+      </button>
+      <button
+        id="34"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(165, 14, 30); color: #fff"
+        title="Dark Red: rgb(165,14,30)"
+      >
+        Dark Red
+      </button>
+      <button
+        id="35"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(250, 128, 114)"
+        title="Light Red: rgb(250, 128, 114)"
+      >
+        Light Red
+      </button>
+      <button
+        id="36"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(228, 92, 26)"
+        title="Dark Orange: rgb(228, 92, 26)"
+      >
+        Dark Orange
+      </button>
+      <button
+        id="37"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(156, 132, 49)"
+        title="Dark Goldenrod: rgb(156, 132, 49)"
+      >
+        Dark Goldenrod
+      </button>
+      <button
+        id="38"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(197, 173, 49)"
+        title="Goldenrod: rgb(197, 173, 49)"
+      >
+        Goldenrod
+      </button>
+      <button
+        id="39"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(232, 212, 95)"
+        title="Light Goldenrod: rgb(232, 212, 95)"
+      >
+        Light Goldenrod
+      </button>
+      <button
+        id="40"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(74, 107, 58); color: #fff"
+        title="Dark Olive: rgb(74, 107, 58)"
+      >
+        Dark Olive
+      </button>
+      <button
+        id="41"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(90, 148, 74)"
+        title="Olive: rgb(90, 148, 74)"
+      >
+        Olive
+      </button>
+      <button
+        id="42"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(132, 197, 115)"
+        title="Light Olive: rgb(132, 197, 115)"
+      >
+        Light Olive
+      </button>
+      <button
+        id="43"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(15, 121, 159); color: #fff"
+        title="Dark Cyan: rgb(15, 121, 159)"
+      >
+        Dark Cyan
+      </button>
+      <button
+        id="44"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(187, 250, 242)"
+        title="Light Cyan: rgb(187, 250, 242)"
+      >
+        Light Cyan
+      </button>
+      <button
+        id="45"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(125, 199, 255)"
+        title="Light Blue: rgb(125, 199, 255)"
+      >
+        Light Blue
+      </button>
+      <button
+        id="46"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(77, 49, 184); color: #fff"
+        title="Dark Indigo: rgb(77, 49, 184)"
+      >
+        Dark Indigo
+      </button>
+      <button
+        id="47"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(74, 66, 132); color: #fff"
+        title="Dark Slate Blue: rgb(74, 66, 132)"
+      >
+        Dark Slate Blue
+      </button>
+      <button
+        id="48"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(122, 113, 196)"
+        title="Slate Blue: rgb(122, 113, 196)"
+      >
+        Slate Blue
+      </button>
+      <button
+        id="49"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(181, 174, 241)"
+        title="Light Slate Blue: rgb(181, 174, 241)"
+      >
+        Light Slate Blue
+      </button>
+      <button
+        id="50"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(155, 82, 73)"
+        title="Dark Peach: rgb(155, 82, 73)"
+      >
+        Dark Peach
+      </button>
+      <button
+        id="51"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(209, 128, 120)"
+        title="Peach: rgb(209, 128, 120)"
+      >
+        Peach
+      </button>
+      <button
+        id="52"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(250, 182, 164)"
+        title="Light Peach: rgb(250, 182, 164)"
+      >
+        Light Peach
+      </button>
+      <button
+        id="53"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(219, 164, 99)"
+        title="Light Brown: rgb(219, 164, 99)"
+      >
+        Light Brown
+      </button>
+      <button
+        id="54"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(123, 99, 82)"
+        title="Dark Tan: rgb(123, 99, 82)"
+      >
+        Dark Tan
+      </button>
+      <button
+        id="55"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(156, 132, 107)"
+        title="Tan: rgb(156, 132, 107)"
+      >
+        Tan
+      </button>
+      <button
+        id="56"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(214, 181, 148)"
+        title="Light Tan: rgb(214, 181, 148)"
+      >
+        Light Tan
+      </button>
+      <button
+        id="57"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(209, 128, 81)"
+        title="Dark Beige: rgb(209, 128, 81)"
+      >
+        Dark Beige
+      </button>
+      <button
+        id="58"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(255, 197, 165)"
+        title="Light Beige: rgb(255, 197, 165)"
+      >
+        Light Beige
+      </button>
+      <button
+        id="59"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(109, 100, 63)"
+        title="Dark Stone: rgb(109, 100, 63)"
+      >
+        Dark Stone
+      </button>
+      <button
+        id="60"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(148, 140, 107)"
+        title="Stone: rgb(148, 140, 107)"
+      >
+        Stone
+      </button>
+      <button
+        id="61"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(205, 197, 158)"
+        title="Light Stone: rgb(205, 197, 158)"
+      >
+        Light Stone
+      </button>
+      <button
+        id="62"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(51, 57, 65); color: #fff"
+        title="Dark Slate: rgb(51, 57, 65)"
+      >
+        Dark Slate
+      </button>
+      <button
+        id="63"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(109, 117, 141)"
+        title="Slate: rgb(109, 117, 141)"
+      >
+        Slate
+      </button>
+      <button
+        id="64"
+        class="toggle-color"
+        data-type="paid"
+        style="background: rgb(179, 185, 209)"
+        title="Light Slate: rgb(179, 185, 209)"
+      >
+        Light Slate
+      </button>
+    </div>
+    <div id="color-list"></div>
 
-  <h2 style="text-align: center;">Wplace Color Palettes</h2>
-  <p data-i18n="freeColors">Free Colors:</p>
-  <button class="toggle-color" data-type=free style="background: rgb(0,0,0); color: #fff;" id="unselect-all-free" data-i18n="allButtonfreeUnselect">Unselect All Free Colors</button>
-  <div id="colors">
-    <button id="1" class="toggle-color active" data-type=free style="background: rgb(0,0,0); color: #fff;" title="Black: rgb(0, 0, 0)">Black</button>
-    <button id="2" class="toggle-color active" data-type=free style="background: rgb(60,60,60); color: #fff;" title="Dark Gray: rgb(60, 60, 60)">Dark Gray</button>
-    <button id="3" class="toggle-color active" data-type=free style="background: rgb(120,120,120);" title="Gray: rgb(120, 120, 120)">Gray</button>
-    <button id="4" class="toggle-color active" data-type=free style="background: rgb(210,210,210);" title="Light Gray: rgb(210, 210, 210)">Light Gray</button>
-    <button id="5" class="toggle-color active" data-type=free style="background: rgb(255,255,255);" title="White: rgb(255, 255, 255)">White</button>
-    <button id="6" class="toggle-color active" data-type=free style="background: rgb(96,0,24); color: #fff;" title="Deep Red: rgb(96, 0, 24)">Deep Red</button>
-    <button id="7" class="toggle-color active" data-type=free style="background: rgb(237,28,36);" title="Red: rgb(237, 28, 36)">Red</button>
-    <button id="8" class="toggle-color active" data-type=free style="background: rgb(255,127,39);" title="Orange: rgb(255, 127, 39)">Orange</button>
-    <button id="9" class="toggle-color active" data-type=free style="background: rgb(246,170,9);" title="Gold: rgb(246, 170, 9)">Gold</button>
-    <button id="10" class="toggle-color active" data-type=free style="background: rgb(249,221,59);" title="Yellow: rgb(249, 221, 59)">Yellow</button>
-    <button id="11" class="toggle-color active" data-type=free style="background: rgb(255,250,188);" title="Light Yellow: rgb(255, 250, 188)">Light Yellow</button>
-    <button id="12" class="toggle-color active" data-type=free style="background: rgb(14,185,104);" title="Dark Green: rgb(14, 185, 104)">Dark Green</button>
-    <button id="13" class="toggle-color active" data-type=free style="background: rgb(19,230,123);" title="Green: rgb(19, 230, 123)">Green</button>
-    <button id="14" class="toggle-color active" data-type=free style="background: rgb(135, 255, 94);" title="Light Green: rgb(135, 255, 94)">Light Green</button>
-    <button id="15" class="toggle-color active" data-type=free style="background: rgb(12, 129, 110);" title="Dark Teal: rgb(12, 129, 110)">Dark Teal</button>
-    <button id="16" class="toggle-color active" data-type=free style="background: rgb(16,174,166);" title="Teal: rgb(16, 174, 166)">Teal</button>
-    <button id="17" class="toggle-color active" data-type=free style="background: rgb(19,225,190);" title="Light Teal: rgb(19, 225, 190)">Light Teal</button>
-    <button id="18" class="toggle-color active" data-type=free style="background: rgb(96,247,242);" title="Cyan: rgb(96, 247, 242)">Cyan</button>
-    <button id="19" class="toggle-color active" data-type=free style="background: rgb(40,80,158); color: #fff;" title="Dark Blue: rgb(40, 80, 158)">Dark Blue</button>
-    <button id="20" class="toggle-color active" data-type=free style="background: rgb(64,147,228);" title="Blue: rgb(64, 147, 228)">Blue</button>
-    <button id="21" class="toggle-color active" data-type=free style="background: rgb(107,80,246); color: #fff;" title="Indigo: rgb(107, 80, 246)">Indigo</button>
-    <button id="22" class="toggle-color active" data-type=free style="background: rgb(153,177,251);" title="Light Indigo: rgb(153, 177, 251)">Light Indigo</button>
-    <button id="23" class="toggle-color active" data-type=free style="background: rgb(120, 12, 153); color: #fff;" title="Dark Purple: rgb(120, 12, 153)">Dark Purple</button>
-    <button id="24" class="toggle-color active" data-type=free style="background: rgb(170,56,185); color: #fff;" title="Purple: rgb(170, 56, 185)">Purple</button>
-    <button id="25" class="toggle-color active" data-type=free style="background: rgb(224,159,249);" title="Light Purple: rgb(224, 159, 249)">Light Purple</button>
-    <button id="26" class="toggle-color active" data-type=free style="background: rgb(203,0,122);" title="Dark Pink: rgb(203, 0, 122)">Dark Pink</button>
-    <button id="27" class="toggle-color active" data-type=free style="background: rgb(236,31,128);" title="Pink: rgb(236, 31, 128)">Pink</button>
-    <button id="28" class="toggle-color active" data-type=free style="background: rgb(243,141,169);" title="Light Pink: rgb(243, 141, 169)">Light Pink</button>
-    <button id="29" class="toggle-color active" data-type=free style="background: rgb(104,70,52); color: #fff;" title="Dark Brown: rgb(104, 70, 52)">Dark Brown</button>
-    <button id="30" class="toggle-color active" data-type=free style="background: rgb(149,104,42);" title="Brown: rgb(149, 104, 42)">Brown</button>
-    <button id="31" class="toggle-color active" data-type=free style="background: rgb(248,178,119);" title="Beige: rgb(248, 178, 119)">Beige</button> 
-  </div>
+    <section
+      class="introduction"
+      style="
+        text-align: left;
+        max-width: 1000px;
+        margin: 0 auto 32px;
+        color: #cccccc;
+      "
+    >
+      <h2 data-i18n="introTitle">Professional Pixel Art Creation for Wplace</h2>
+      <p data-i18n="introDescription">
+        Wplace Pixel Art Tool is your ultimate solution for creating
+        pixel-perfect artwork. Our advanced pixel art converter ensures your
+        images are perfectly optimized for the Wplace platform.
+      </p>
 
-  <p data-i18n="paidColors">Paid Colors (2000💧each):</p>
-    <button class="toggle-color" data-type=paid style="background: rgb(0,0,0); color: #fff;" id="select-all-paid" data-i18n="allButtonpaidSelect">Select All 💧Paid Colors</button>
-  <div id="colors">
-    <button id="33" class="toggle-color" data-type=paid style="background: rgb(170,170,170);" title="Medium Gray: rgb(170, 170, 170)">Medium Gray</button>
-    <button id="34" class="toggle-color" data-type=paid style="background: rgb(165,14,30); color: #fff;" title="Dark Red: rgb(165,14,30)">Dark Red</button>
-    <button id="35" class="toggle-color" data-type=paid style="background: rgb(250,128,114);" title="Light Red: rgb(250, 128, 114)">Light Red</button>
-    <button id="36" class="toggle-color" data-type=paid style="background: rgb(228,92,26);" title="Dark Orange: rgb(228, 92, 26)">Dark Orange</button>
-    <button id="37" class="toggle-color" data-type=paid style="background: rgb(156, 132, 49);" title="Dark Goldenrod: rgb(156, 132, 49)">Dark Goldenrod</button>
-    <button id="38" class="toggle-color" data-type=paid style="background: rgb(197, 173, 49);" title="Goldenrod: rgb(197, 173, 49)">Goldenrod</button>
-    <button id="39" class="toggle-color" data-type=paid style="background: rgb(232,212,95);" title="Light Goldenrod: rgb(232, 212, 95)">Light Goldenrod</button>
-    <button id="40" class="toggle-color" data-type=paid style="background: rgb(74,107,58); color: #fff;" title="Dark Olive: rgb(74, 107, 58)">Dark Olive</button>
-    <button id="41" class="toggle-color" data-type=paid style="background: rgb(90,148,74);" title="Olive: rgb(90, 148, 74)">Olive</button>
-    <button id="42" class="toggle-color" data-type=paid style="background: rgb(132,197,115);" title="Light Olive: rgb(132, 197, 115)">Light Olive</button>
-    <button id="43" class="toggle-color" data-type=paid style="background: rgb(15,121,159); color: #fff;" title="Dark Cyan: rgb(15, 121, 159)">Dark Cyan</button>
-    <button id="44" class="toggle-color" data-type=paid style="background: rgb(187,250,242);" title="Light Cyan: rgb(187, 250, 242)">Light Cyan</button>
-    <button id="45" class="toggle-color" data-type=paid style="background: rgb(125, 199, 255);" title="Light Blue: rgb(125, 199, 255)">Light Blue</button>
-    <button id="46" class="toggle-color" data-type=paid style="background: rgb(77,49,184); color: #fff;" title="Dark Indigo: rgb(77, 49, 184)">Dark Indigo</button>
-    <button id="47" class="toggle-color" data-type=paid style="background: rgb(74,66,132); color: #fff;" title="Dark Slate Blue: rgb(74, 66, 132)">Dark Slate Blue</button>
-    <button id="48" class="toggle-color" data-type=paid style="background: rgb(122,113,196);" title="Slate Blue: rgb(122, 113, 196)">Slate Blue</button>
-    <button id="49" class="toggle-color" data-type=paid style="background: rgb(181,174,241);" title="Light Slate Blue: rgb(181, 174, 241)">Light Slate Blue</button>
-    <button id="50" class="toggle-color" data-type=paid style="background: rgb(155,82,73);" title="Dark Peach: rgb(155, 82, 73)">Dark Peach</button>
-    <button id="51" class="toggle-color" data-type=paid style="background: rgb(209,128,120);" title="Peach: rgb(209, 128, 120)">Peach</button>
-    <button id="52" class="toggle-color" data-type=paid style="background: rgb(250,182,164);" title="Light Peach: rgb(250, 182, 164)">Light Peach</button>
-    <button id="53" class="toggle-color" data-type=paid style="background: rgb(219,164,99);" title="Light Brown: rgb(219, 164, 99)">Light Brown</button>
-    <button id="54" class="toggle-color" data-type=paid style="background: rgb(123,99,82);" title="Dark Tan: rgb(123, 99, 82)">Dark Tan</button>
-    <button id="55" class="toggle-color" data-type=paid style="background: rgb(156,132,107);" title="Tan: rgb(156, 132, 107)">Tan</button>
-    <button id="56" class="toggle-color" data-type=paid style="background: rgb(214,181,148);" title="Light Tan: rgb(214, 181, 148)">Light Tan</button>
-    <button id="57" class="toggle-color" data-type=paid style="background: rgb(209,128,81);" title="Dark Beige: rgb(209, 128, 81)">Dark Beige</button>
-    <button id="58" class="toggle-color" data-type=paid style="background: rgb(255,197,165);" title="Light Beige: rgb(255, 197, 165)">Light Beige</button>
-    <button id="59" class="toggle-color" data-type=paid style="background: rgb(109,100,63);" title="Dark Stone: rgb(109, 100, 63)">Dark Stone</button>
-    <button id="60" class="toggle-color" data-type=paid style="background: rgb(148,140,107);" title="Stone: rgb(148, 140, 107)">Stone</button>
-    <button id="61" class="toggle-color" data-type=paid style="background: rgb(205,197,158);" title="Light Stone: rgb(205, 197, 158)">Light Stone</button>
-    <button id="62" class="toggle-color" data-type=paid style="background: rgb(51,57,65); color: #fff;" title="Dark Slate: rgb(51, 57, 65)">Dark Slate</button>
-    <button id="63" class="toggle-color" data-type=paid style="background: rgb(109,117,141);" title="Slate: rgb(109, 117, 141)">Slate</button>
-    <button id="64" class="toggle-color" data-type=paid style="background: rgb(179,185,209);" title="Light Slate: rgb(179, 185, 209)">Light Slate</button> 
-  </div>
-  <div id="color-list"></div>
-
-  <section class="introduction" style="text-align: left; max-width: 1000px; margin: 0 auto 32px; color: #cccccc;">
-       <h2 data-i18n="introTitle">Professional Pixel Art Creation for Wplace</h2>
-      <p data-i18n="introDescription">Wplace Pixel Art Tool is your ultimate solution for creating pixel-perfect artwork. Our advanced pixel art converter ensures your images are perfectly optimized for the Wplace platform.</p>
-      
       <div class="features">
         <article class="feature-item">
-          <h3 style="text-align: left; font-size: 1.4rem; font-weight: 500; letter-spacing: 0; margin-bottom: 16px; color: #ffffff;" data-i18n="featureTitle1">Advanced Pixel Art Conversion</h3>
-          <p data-i18n="featureDesc1">Transform any image into precise pixel art with our professional conversion engine. Perfect pixel alignment and customizable resolution for Wplace.</p>
+          <h3
+            style="
+              text-align: left;
+              font-size: 1.4rem;
+              font-weight: 500;
+              letter-spacing: 0;
+              margin-bottom: 16px;
+              color: #ffffff;
+            "
+            data-i18n="featureTitle1"
+          >
+            Advanced Pixel Art Conversion
+          </h3>
+          <p data-i18n="featureDesc1">
+            Transform any image into precise pixel art with our professional
+            conversion engine. Perfect pixel alignment and customizable
+            resolution for Wplace.
+          </p>
         </article>
         <article class="feature-item">
-          <h3 style="text-align: left; font-size: 1.4rem; font-weight: 500; letter-spacing: 0; margin-bottom: 16px; color: #ffffff;" data-i18n="featureTitle2">Wplace Color System</h3>
-          <p data-i18n="featureDesc2">Access Wplace's complete color palette system. Create pixel masterpieces with both free and premium colors, ensuring perfect compatibility with Wplace.</p>
+          <h3
+            style="
+              text-align: left;
+              font-size: 1.4rem;
+              font-weight: 500;
+              letter-spacing: 0;
+              margin-bottom: 16px;
+              color: #ffffff;
+            "
+            data-i18n="featureTitle2"
+          >
+            Wplace Color System
+          </h3>
+          <p data-i18n="featureDesc2">
+            Access Wplace's complete color palette system. Create pixel
+            masterpieces with both free and premium colors, ensuring perfect
+            compatibility with Wplace.
+          </p>
         </article>
         <article class="feature-item">
-          <h3 style="text-align: left; font-size: 1.4rem; font-weight: 500; letter-spacing: 0; margin-bottom: 16px; color: #ffffff;" data-i18n="featureTitle3">Pixel-Perfect Tools</h3>
-          <p data-i18n="featureDesc3">Utilize professional pixel art tools including precise scaling, pixel-perfect adjustments, and seamless Wplace integration for optimal results.</p>
+          <h3
+            style="
+              text-align: left;
+              font-size: 1.4rem;
+              font-weight: 500;
+              letter-spacing: 0;
+              margin-bottom: 16px;
+              color: #ffffff;
+            "
+            data-i18n="featureTitle3"
+          >
+            Pixel-Perfect Tools
+          </h3>
+          <p data-i18n="featureDesc3">
+            Utilize professional pixel art tools including precise scaling,
+            pixel-perfect adjustments, and seamless Wplace integration for
+            optimal results.
+          </p>
         </article>
-    </div>
-  </section>
-
-  <section class="faq">
-     <h2>Frequently Asked Questions</h2>
-     <div class="faq-container">
-       <div class="faq-item">
-         <h3>What is Wplace Pixel Art Tool?</h3>
-         <p>Wplace Pixel Art Tool is a professional pixel art converter specifically designed for Wplace. It helps you transform any image into pixel-perfect art with precise color adjustments, supporting both free and premium Wplace color palettes.</p>
-       </div>
-
-       <div class="faq-item">
-         <h3>How do I create pixel art with Wplace?</h3>
-         <p>1. Upload your image to our pixel art converter<br>
-            2. Use our pixel-perfect scaling tools for ideal resolution<br>
-            3. Select colors from Wplace's curated pixel art palette<br>
-            4. Fine-tune with our pixel optimization tools<br>
-            5. Export your pixel art for Wplace</p>
-       </div>
-
-       <div class="faq-item">
-         <h3>What's the difference between Free and Paid colors?</h3>
-         <p>Free colors are available to all users, while Paid colors cost 2000💧 each and offer additional color options for more detailed pixel art. Paid colors help you create more nuanced and sophisticated designs.</p>
-       </div>
-
-       <div class="faq-item">
-         <h3>Can I use my own custom colors?</h3>
-         <p>No, Wplace Tool is specifically designed to work with Wplace's predefined color palette to ensure compatibility. You can choose from our extensive selection of free and paid colors.</p>
-       </div>
-
-       <div class="faq-item">
-         <h3>What image formats are supported?</h3>
-         <p>Wplace Tool supports common image formats including PNG, JPEG, GIF, and BMP. For best results, we recommend using PNG files with transparent backgrounds.</p>
-       </div>
-
-       <div class="faq-item">
-         <h3>How can I get the best results?</h3>
-         <p>1. Start with a high-quality source image<br>
-            2. Experiment with different scale settings<br>
-            3. Use a combination of free and paid colors for more detail<br>
-            4. Remove semi-transparent pixels for cleaner edges<br>
-            5. Preview your work before finalizing</p>
-       </div>
-     </div>
-   </section>
-
-   <footer class="site-footer">
-    <div class="site-footer__inner">
-      <div style="margin-bottom: 20px;">
-        <h3 data-i18n="footerTitle">Wplace Pixel Tool</h3>
-        <p data-i18n="footerDescription">The ultimate pixel art converter for Wplace platform</p>
       </div>
-      <div class="site-footer__groups">
-        <div class="site-footer__group">
-          <h4 data-i18n="linksTitle">Links</h4>
-          <ul class="site-footer__list">
-            <li><a href="https://wplace.live">Wplace Platform</a></li>
-            <li><a href="/geocode">Map Link (Lat/Long Locator)</a></li>
-            <li><a href="/blue-marble">Blue Marble</a></li>
-            <li><a href="https://github.com/PEPOAFONSO/color_converter_wplace">GitHub</a></li>
-          </ul>
+    </section>
+
+    <section class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <h3>What is Wplace Pixel Art Tool?</h3>
+          <p>
+            Wplace Pixel Art Tool is a professional pixel art converter
+            specifically designed for Wplace. It helps you transform any image
+            into pixel-perfect art with precise color adjustments, supporting
+            both free and premium Wplace color palettes.
+          </p>
         </div>
-        <div class="site-footer__group">
-          <h4 data-i18n="legalTitle">Legal</h4>
-          <ul class="site-footer__list">
-            <li><a href="/privacy.html">Privacy Policy</a></li>
-            <li><a href="/terms.html">Terms of Service</a></li>
-          </ul>
+
+        <div class="faq-item">
+          <h3>How do I create pixel art with Wplace?</h3>
+          <p>
+            1. Upload your image to our pixel art converter<br />
+            2. Use our pixel-perfect scaling tools for ideal resolution<br />
+            3. Select colors from Wplace's curated pixel art palette<br />
+            4. Fine-tune with our pixel optimization tools<br />
+            5. Export your pixel art for Wplace
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What's the difference between Free and Paid colors?</h3>
+          <p>
+            Free colors are available to all users, while Paid colors cost
+            2000💧 each and offer additional color options for more detailed
+            pixel art. Paid colors help you create more nuanced and
+            sophisticated designs.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I use my own custom colors?</h3>
+          <p>
+            No, Wplace Tool is specifically designed to work with Wplace's
+            predefined color palette to ensure compatibility. You can choose
+            from our extensive selection of free and paid colors.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What image formats are supported?</h3>
+          <p>
+            Wplace Tool supports common image formats including PNG, JPEG, GIF,
+            and BMP. For best results, we recommend using PNG files with
+            transparent backgrounds.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How can I get the best results?</h3>
+          <p>
+            1. Start with a high-quality source image<br />
+            2. Experiment with different scale settings<br />
+            3. Use a combination of free and paid colors for more detail<br />
+            4. Remove semi-transparent pixels for cleaner edges<br />
+            5. Preview your work before finalizing
+          </p>
         </div>
       </div>
-    </div>
-    <div class="site-footer__bottom">
-      <p data-i18n="copyright">© 2025 Wplace Pixel Tool. All rights reserved.</p>
-    </div>
-    <div id="fazier-badge" class="site-footer__badges">
-      <a href="https://fazier.com/launches/www.wplace.wiki" target="_blank"><img src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=featured&theme=dark" width=150 alt="Fazier badge" /></a>
-      <a href="https://indie.deals?ref=https%3A%2F%2Fwww.wplace.wiki" target="_blank" rel="noopener noreferrer">Indie.Deals</a>
-      <a href="https://twelve.tools" target="_blank"><img src="https://twelve.tools/badge3-dark.svg" alt="Featured on Twelve Tools" width="200" height="54"></a>
-      <a href="https://www.aiproductlist.org" title="AI Sites | 2025">AI Product List</a>
-    </div>
-  </footer>
+    </section>
 
-   <script>
-     async function injectFragment(containerSelector, url) {
-       const container = document.querySelector(containerSelector);
-       if (!container) return;
-       try {
-         const res = await fetch(url, { cache: 'no-store' });
-         const html = await res.text();
-         container.innerHTML = html;
-       } catch (e) {
-         console.error('Failed to inject fragment', url, e);
-       }
-     }
-     document.addEventListener('DOMContentLoaded', async () => {
-       await injectFragment('#navbar-container', '/components/navbar.html');
-       if (window.initNavbarInteractions) window.initNavbarInteractions();
-     });
-   </script>
-   <script src="./navbar.js"></script>
-   <script src="./main.js"></script>
-   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KPG7QFTNP2"></script>
-  <script>
+    <div id="what-is-wplace-container"></div>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div style="margin-bottom: 20px">
+          <h3 data-i18n="footerTitle">Wplace Pixel Tool</h3>
+          <p data-i18n="footerDescription">
+            The ultimate pixel art converter for Wplace platform
+          </p>
+        </div>
+        <div class="site-footer__groups">
+          <div class="site-footer__group">
+            <h4 data-i18n="linksTitle">Links</h4>
+            <ul class="site-footer__list">
+              <li><a href="https://wplace.live">Wplace Platform</a></li>
+              <li><a href="/geocode">Map Link (Lat/Long Locator)</a></li>
+              <li><a href="/blue-marble">Blue Marble</a></li>
+              <li>
+                <a href="https://github.com/PEPOAFONSO/color_converter_wplace"
+                  >GitHub</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="site-footer__group">
+            <h4 data-i18n="legalTitle">Legal</h4>
+            <ul class="site-footer__list">
+              <li><a href="/privacy.html">Privacy Policy</a></li>
+              <li><a href="/terms.html">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p data-i18n="copyright">
+          © 2025 Wplace Pixel Tool. All rights reserved.
+        </p>
+      </div>
+      <div id="fazier-badge" class="site-footer__badges">
+        <a href="https://fazier.com/launches/www.wplace.wiki" target="_blank"
+          ><img
+            src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=featured&theme=dark"
+            width="150"
+            alt="Fazier badge"
+        /></a>
+        <a
+          href="https://indie.deals?ref=https%3A%2F%2Fwww.wplace.wiki"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Indie.Deals</a
+        >
+        <a href="https://twelve.tools" target="_blank"
+          ><img
+            src="https://twelve.tools/badge3-dark.svg"
+            alt="Featured on Twelve Tools"
+            width="200"
+            height="54"
+        /></a>
+        <a href="https://www.aiproductlist.org" title="AI Sites | 2025"
+          >AI Product List</a
+        >
+      </div>
+    </footer>
+
+    <script>
+      async function injectFragment(containerSelector, url) {
+        const container = document.querySelector(containerSelector);
+        if (!container) return;
+        try {
+          const res = await fetch(url, { cache: "no-store" });
+          const html = await res.text();
+          container.innerHTML = html;
+        } catch (e) {
+          console.error("Failed to inject fragment", url, e);
+        }
+      }
+      document.addEventListener("DOMContentLoaded", async () => {
+        await injectFragment("#navbar-container", "/components/navbar.html");
+        if (window.initNavbarInteractions) window.initNavbarInteractions();
+        await injectFragment(
+          "#what-is-wplace-container",
+          "/components/what-is-wplace.html"
+        );
+        // Load translations for the What is Wplace component and apply current language
+        try {
+          await import("/components/what-is-wplace.translations.js");
+          const lang = localStorage.getItem("lang") || "en";
+          if (window.applyWhatIsWplaceTranslations)
+            window.applyWhatIsWplaceTranslations(lang);
+          window.addEventListener("wplace:langchange", (e) => {
+            const next = (e.detail && e.detail.lang) || "en";
+            if (window.applyWhatIsWplaceTranslations)
+              window.applyWhatIsWplaceTranslations(next);
+          });
+        } catch (err) {
+          console.error(
+            "Failed to load/apply what-is-wplace translations",
+            err
+          );
+        }
+      });
+    </script>
+    <script src="./navbar.js"></script>
+    <script src="./main.js"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-KPG7QFTNP2"
+    ></script>
+    <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'G-KPG7QFTNP2');
-         </script>
+      gtag("config", "G-KPG7QFTNP2");
+    </script>
   </body>
-
 </html>
