@@ -3,6 +3,12 @@
   let mapInstance = null;
   let markerInstance = null;
 
+  function clampZoom(z) {
+    const n = parseInt(z, 10);
+    if (!Number.isFinite(n)) return 13;
+    return Math.max(1, Math.min(19, n));
+  }
+
   function createMapIfNeeded() {
     if (mapInstance) return mapInstance;
     mapInstance = L.map('map').setView([20, 0], 2);
@@ -95,8 +101,29 @@
     if (el) el.textContent = text || '';
   }
 
+  function updateQueryParams(query, zoom) {
+    try {
+      const url = new URL(window.location.href);
+      if (query && query.trim()) {
+        url.searchParams.set('q', query.trim());
+      } else {
+        url.searchParams.delete('q');
+      }
+      if (Number.isFinite(zoom)) {
+        url.searchParams.set('zoom', String(clampZoom(zoom)));
+      } else {
+        url.searchParams.delete('zoom');
+      }
+      history.replaceState(null, '', url.toString());
+    } catch (_) {
+      // ignore URL update errors
+    }
+  }
+
   async function doSearch(query) {
     if (!query || !query.trim()) return;
+    // Keep URL in sync so it can be shared
+    updateQueryParams(query, getZoom());
     const lang = localStorage.getItem('lang') || 'en';
     const T = (window.geocodeTranslations || {})[lang] || (window.geocodeTranslations || {}).en || {};
     setStatus(T.searching || 'Searching…');
@@ -145,6 +172,8 @@
     }
     if (zoom) {
       zoom.addEventListener('change', () => {
+        // reflect zoom change in URL
+        updateQueryParams((document.getElementById('q') || {}).value || '', getZoom());
         if (markerInstance) {
           const { lat, lng } = markerInstance.getLatLng();
           ensureMarker(lat, lng);
@@ -165,6 +194,23 @@
   document.addEventListener('DOMContentLoaded', () => {
     createMapIfNeeded();
     setupEvents();
+    // If URL contains search params, hydrate UI and auto-run search
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const qEl = document.getElementById('q');
+      const zoomEl = document.getElementById('zoomInput');
+      const qp = params.get('q');
+      const zp = params.get('zoom');
+      if (zoomEl && zp) {
+        zoomEl.value = String(clampZoom(zp));
+      }
+      if (qEl && qp) {
+        qEl.value = qp;
+        doSearch(qp);
+      }
+    } catch (_) {
+      // ignore parse errors
+    }
   });
 })();
 
