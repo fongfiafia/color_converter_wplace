@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wplace Colors Palette | Official Palette for Wplace.live</title>
+    <meta
+      name="description"
+      content="The full Wplace Colors Palette for wplace.live. Browse all official colors with hex values and copy them for pixel art workflows."
+    />
+    <meta
+      name="keywords"
+      content="wplace colors, wplace palette, wplace.live colors, pixel art colors, color hex"
+    />
+    <link rel="canonical" href="https://www.wplace.wiki/palette" />
+    <meta property="og:title" content="Wplace Colors Palette" />
+    <meta
+      property="og:description"
+      content="Official Wplace color palette for wplace.live with copyable hex codes."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="stylesheet" href="/main.css" />
+    <link rel="stylesheet" href="/navbar.css?v=4" />
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Wplace Colors Palette",
+        "url": "https://www.wplace.wiki/palette",
+        "about": {
+          "@type": "Thing",
+          "name": "wplace.live",
+          "sameAs": "https://wplace.live"
+        }
+      }
+    </script>
+
+    <style>
+      main {
+        max-width: 1100px;
+        margin: 40px auto 24px;
+        padding: 0 16px;
+      }
+      .palette-header {
+        color: #fff;
+      }
+      .palette-sub {
+        color: #cfcfcf;
+        max-width: 800px;
+      }
+      .meta {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 12px 0 18px;
+        color: #bdbdbd;
+      }
+      .meta-item {
+        background: #121212;
+        border: 1px solid #222;
+        border-radius: 10px;
+        padding: 10px 12px;
+      }
+      .tags {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin: 6px 0 16px;
+      }
+      .tag {
+        color: #9dc2ff;
+        background: #0f1725;
+        border: 1px solid #1f2a44;
+        padding: 4px 8px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .swatch {
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #222;
+        background: #111;
+      }
+      .swatch-color {
+        height: 54px;
+      }
+      .swatch-meta {
+        padding: 8px 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .hex {
+        color: #fff;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+      }
+      .copy {
+        color: #9dc2ff;
+        cursor: pointer;
+        font-size: 0.9rem;
+      }
+      @media (max-width: 1024px) {
+        .grid {
+          grid-template-columns: repeat(5, 1fr);
+        }
+      }
+      @media (max-width: 768px) {
+        main {
+          margin: 56px auto 16px;
+          padding: 0 12px;
+        }
+        .grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      @media (max-width: 480px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navbar-container"></div>
+    <main>
+      <h1 class="palette-header" style="margin-bottom: 8px">
+        WPLACE COLORS PALETTE
+      </h1>
+      <p class="palette-sub">
+        This is the full palette referenced by the Wplace project for
+        wplace.live. Browse each color and copy its hex for easy use in your
+        pixel workflows.
+      </p>
+
+      <div class="meta">
+        <div class="meta-item">
+          <strong>Number of colors:</strong> <span id="count"></span>
+        </div>
+        <div class="meta-item">
+          <strong>Copied:123398</strong> <span id="downloads"></span>
+        </div>
+        <div class="meta-item">
+          <strong>Likes:987765</strong> <span id="likes"></span>
+        </div>
+      </div>
+
+      <div class="tags" aria-label="tags">
+        <span class="tag">#wplace</span>
+        <span class="tag">online</span>
+        <span class="tag">worldmap</span>
+      </div>
+
+      <section>
+        <h2 style="color: #fff; margin: 18px 0 10px">Free Colors</h2>
+        <div id="grid-free" class="grid" aria-live="polite"></div>
+      </section>
+      <section style="margin-top: 18px">
+        <h2 style="color: #fff; margin: 0 0 10px">Paid Colors (2000💧 each)</h2>
+        <div id="grid-paid" class="grid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script>
+      async function injectFragment(containerSelector, url) {
+        const el = document.querySelector(containerSelector);
+        if (!el) return;
+        const res = await fetch(url, { cache: "no-store" });
+        el.innerHTML = await res.text();
+      }
+      document.addEventListener("DOMContentLoaded", async () => {
+        await injectFragment("#navbar-container", "/components/navbar.html");
+        if (window.initNavbarInteractions) window.initNavbarInteractions();
+        await injectFragment("#footer-container", "/components/footer.html");
+
+        const freeColors = [
+          "#000000",
+          "#3c3c3c",
+          "#787878",
+          "#d2d2d2",
+          "#ffffff",
+          "#600018",
+          "#ed1c24",
+          "#ff7f27",
+          "#f6aa09",
+          "#f9dd3b",
+          "#fffabc",
+          "#0eb968",
+          "#13e67b",
+          "#87ff5e",
+          "#0c816e",
+          "#10aea6",
+          "#13e1be",
+          "#60f7f2",
+          "#28509e",
+          "#4093e4",
+          "#6b50f6",
+          "#99b1fb",
+          "#780c99",
+          "#aa38b9",
+          "#e09ff9",
+          "#cb007a",
+          "#ec1f80",
+          "#f38da9",
+          "#684634",
+          "#95682a",
+          "#f8b277",
+        ];
+        const paidColors = [
+          "#aaaaaa",
+          "#a50e1e",
+          "#fa8072",
+          "#e45c1a",
+          "#9c8431",
+          "#c5ad31",
+          "#e8d45f",
+          "#4a6b3a",
+          "#5a944a",
+          "#84c573",
+          "#0f799f",
+          "#bbfaf2",
+          "#7dc7ff",
+          "#4d31b8",
+          "#4a4284",
+          "#7a71c4",
+          "#b5aef1",
+          "#9b5249",
+          "#d18078",
+          "#fab6a4",
+          "#dba463",
+          "#7b6352",
+          "#9c846b",
+          "#d6b594",
+          "#d18051",
+          "#ffc5a5",
+          "#6d643f",
+          "#948c6b",
+          "#cdc59e",
+          "#333941",
+          "#6d758d",
+          "#b3b9d1",
+        ];
+
+        const gridFree = document.getElementById("grid-free");
+        const gridPaid = document.getElementById("grid-paid");
+        const countEl = document.getElementById("count");
+        const downloadsEl = document.getElementById("downloads");
+        const likesEl = document.getElementById("likes");
+        countEl.textContent = String(freeColors.length + paidColors.length);
+        downloadsEl.textContent = "—";
+        likesEl.textContent = "—";
+
+        function renderInto(container, colors) {
+          const fragment = document.createDocumentFragment();
+          colors.forEach((hex) => {
+            const wrap = document.createElement("div");
+            wrap.className = "swatch";
+            const top = document.createElement("div");
+            top.className = "swatch-color";
+            top.style.background = hex;
+            const meta = document.createElement("div");
+            meta.className = "swatch-meta";
+            const code = document.createElement("span");
+            code.className = "hex";
+            code.textContent = hex.toLowerCase();
+            const copy = document.createElement("button");
+            copy.className = "copy";
+            copy.type = "button";
+            copy.textContent = "Copy";
+            copy.addEventListener("click", async () => {
+              try {
+                await navigator.clipboard.writeText(hex.toLowerCase());
+                copy.textContent = "Copied";
+                setTimeout(() => (copy.textContent = "Copy"), 1200);
+              } catch (_) {}
+            });
+            meta.append(code, copy);
+            wrap.append(top, meta);
+            fragment.appendChild(wrap);
+          });
+          container.appendChild(fragment);
+        }
+
+        renderInto(gridFree, freeColors);
+        renderInto(gridPaid, paidColors);
+      });
+    </script>
+    <script src="/navbar.js"></script>
+  </body>
+</html>
